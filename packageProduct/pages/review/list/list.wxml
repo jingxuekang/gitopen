@@ -1,0 +1,21 @@
+<view class="container">
+  <block wx:if="{{loading && reviews.length === 0}}">
+    <view class="loading">加载中...</view>
+  </block>
+  <block wx:elif="{{reviews.length === 0}}">
+    <view class="empty">暂无评价</view>
+  </block>
+  <block wx:else>
+    <view class="review-item" wx:for="{{reviews}}" wx:key="_id">
+      <view class="user-row">
+        <image class="avatar" src="{{item.userInfo.avatar || '/images/empty/product.png'}}" mode="aspectFill" />
+        <text class="nickname">{{item.userInfo.nickname || '匿名用户'}}</text>
+        <view class="stars">★{{item.rating || 5}}</view>
+      </view>
+      <view class="content">{{item.content || '该用户未填写评价内容'}}</view>
+      <view class="time" wx:if="{{item.createdAt}}">{{item.createdAt}}</view>
+    </view>
+    <view class="load-more" wx:if="{{hasMore && !loading}}">上拉加载更多</view>
+    <view class="load-more" wx:if="{{!hasMore && reviews.length > 0}}">已加载全部</view>
+  </block>
+</view>

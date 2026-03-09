@@ -1,0 +1,9 @@
+{
+  "name": "getAvailableCoupons",
+  "version": "1.0.0",
+  "description": "获取订单可用优惠券",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

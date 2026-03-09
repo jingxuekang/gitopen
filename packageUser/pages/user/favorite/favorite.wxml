@@ -1,0 +1,32 @@
+<!-- 收藏列表页面 -->
+<view class="container">
+  <nav-header title="我的收藏" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <view wx:if="{{loading && favorites.length === 0}}" class="loading">
+    <skeleton type="product-card" wx:for="{{[1,2,3]}}" wx:key="index"></skeleton>
+  </view>
+
+  <view wx:elif="{{favorites.length === 0}}" class="empty">
+    <view class="empty-icon">藏</view>
+    <text class="empty-text">还没有收藏商品</text>
+    <button class="go-shopping-btn" bindtap="onGoShopping">去逛逛</button>
+  </view>
+
+  <view wx:else class="favorites-list">
+    <view class="favorite-item" wx:for="{{favorites}}" wx:key="_id">
+      <product-card
+        product="{{item.productInfo}}"
+        showCart="{{true}}"
+        bind:tap="onViewProduct"
+        bind:addcart="onAddToCart"
+      />
+      <view class="actions">
+        <button class="action-btn remove" bindtap="onRemoveFavorite" data-id="{{item.productId}}">取消收藏</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!hasMore && favorites.length > 0}}" class="no-more">
+    <text>没有更多了</text>
+  </view>
+</view>

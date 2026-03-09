@@ -1,0 +1,48 @@
+<!-- 我的优惠券页面 -->
+<view class="container">
+  <!-- Tab栏 -->
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === index ? 'active' : ''}}" 
+      wx:for="{{tabs}}" 
+      wx:key="index"
+      bindtap="onTabChange"
+      data-index="{{index}}"
+    >
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 优惠券列表 -->
+  <view class="coupons-list">
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+
+    <view wx:elif="{{coupons.length === 0}}" class="empty">
+      <text class="empty-icon">🎫</text>
+      <text class="empty-text">暂无优惠券</text>
+      <button class="go-center-btn" bindtap="onGoCouponCenter">去领券中心</button>
+    </view>
+
+    <view wx:else>
+      <view class="coupon-item {{item.status !== 0 ? 'disabled' : ''}}" wx:for="{{coupons}}" wx:key="_id">
+        <view class="coupon-left">
+          <view class="coupon-value">
+            <text class="symbol">¥</text>
+            <text class="amount">{{item.couponInfo.type === 1 ? (item.couponInfo.value / 100) : item.couponInfo.value / 10}}</text>
+            <text wx:if="{{item.couponInfo.type === 2}}" class="unit">折</text>
+          </view>
+          <text class="coupon-condition">满{{item.formattedMinAmount}}元可用</text>
+        </view>
+        <view class="coupon-right">
+          <text class="coupon-name">{{item.couponInfo.name}}</text>
+          <text class="coupon-time">有效期至 {{item.couponInfo.validTo}}</text>
+          <button wx:if="{{item.status === 0}}" class="use-btn" bindtap="onUseCoupon">去使用</button>
+          <text wx:elif="{{item.status === 1}}" class="status-text">已使用</text>
+          <text wx:else class="status-text">已过期</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

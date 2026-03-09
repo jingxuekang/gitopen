@@ -1,0 +1,41 @@
+<!-- 我的优惠券页面 -->
+<view class="container">
+  <nav-header title="我的优惠券" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- Tab栏 -->
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === index ? 'active' : ''}}" 
+      wx:for="{{tabs}}" 
+      wx:key="index"
+      bindtap="onTabChange"
+      data-index="{{index}}"
+    >
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 优惠券列表 -->
+  <view class="coupons-list">
+    <view wx:if="{{loading}}" class="loading">
+      <skeleton type="list" count="3"></skeleton>
+    </view>
+
+    <view wx:elif="{{coupons.length === 0}}" class="empty">
+      <view class="empty-icon">券</view>
+      <text class="empty-text">暂无优惠券</text>
+      <button class="go-center-btn" bindtap="onGoCouponCenter">去领券中心</button>
+    </view>
+
+    <view wx:else>
+      <coupon-card
+        wx:for="{{coupons}}"
+        wx:key="_id"
+        coupon="{{item.cardData}}"
+        status="{{item.status}}"
+        actionText="去使用"
+        bind:action="onUseCoupon"
+      />
+    </view>
+  </view>
+</view>

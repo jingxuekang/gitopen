@@ -1,0 +1,147 @@
+<!--pages/group/detail/detail.wxml-->
+<view class="group-detail-page">
+  <nav-header title="拼团详情" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 拼团详情内容 -->
+  <view wx:if="{{!loading && product}}" class="detail-content">
+    <!-- 商品图片轮播 -->
+    <swiper class="product-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#2C5F2D">
+      <swiper-item wx:for="{{product.images}}" wx:key="index">
+        <image class="swiper-image" src="{{item}}" mode="aspectFill" bind:tap="onPreviewImage" data-current="{{item}}"></image>
+      </swiper-item>
+    </swiper>
+
+    <!-- 拼团状态卡片 -->
+    <view wx:if="{{group}}" class="group-status-card">
+      <!-- 拼团成功 -->
+      <view wx:if="{{group.status === 1}}" class="status-success">
+        <image class="status-icon" src="/images/icons/success.png"></image>
+        <text class="status-text">拼团成功</text>
+      </view>
+
+      <!-- 拼团失败 -->
+      <view wx:elif="{{group.status === 2}}" class="status-failed">
+        <image class="status-icon" src="/images/icons/failed.png"></image>
+        <text class="status-text">拼团失败</text>
+      </view>
+
+      <!-- 拼团进行中 -->
+      <view wx:else class="status-ongoing">
+        <view class="countdown-box">
+          <text class="countdown-label">剩余时间</text>
+          <text class="countdown-value">{{timeLeft}}</text>
+        </view>
+        <view class="progress-box">
+          <text class="progress-text">还差{{group.requiredCount - group.currentCount}}人成团</text>
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{(group.currentCount / group.requiredCount) * 100}}%"></view>
+          </view>
+          <text class="progress-count">{{group.currentCount}}/{{group.requiredCount}}人</text>
+        </view>
+      </view>
+
+      <!-- 成员列表 -->
+      <view class="members-section">
+        <text class="members-title">拼团成员 ({{group.currentCount}}/{{group.requiredCount}})</text>
+        <view class="members-list">
+          <view class="member-item" wx:for="{{group.members}}" wx:key="userId">
+            <image class="member-avatar" src="{{item.userInfo.avatar || '/images/default-avatar.png'}}"></image>
+            <text class="member-name">{{item.userInfo.nickname}}</text>
+            <view wx:if="{{item.userId === group.leaderId}}" class="leader-tag">团长</view>
+          </view>
+          <!-- 空位 -->
+          <view class="member-item empty" wx:for="{{group.requiredCount - group.currentCount}}" wx:key="index">
+            <view class="empty-avatar">
+              <image class="empty-icon" src="/images/icons/add-user.png"></image>
+            </view>
+            <text class="empty-text">待参团</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品信息卡片 -->
+    <view class="product-info-card">
+      <view class="price-section">
+        <view class="group-price-box">
+          <text class="price-label">拼团价</text>
+          <view class="price-row">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{activity.groupPrice / 100}}</text>
+          </view>
+        </view>
+        <view class="original-price-box">
+          <text class="original-label">原价</text>
+          <text class="original-price">¥{{activity.originalPrice / 100}}</text>
+        </view>
+      </view>
+
+      <text class="product-name">{{product.name}}</text>
+      
+      <view class="product-tags">
+        <view class="tag">{{activity.requiredCount}}人团</view>
+        <view class="tag">限时{{activity.duration}}小时</view>
+        <view class="tag">剩余{{activity.stock}}件</view>
+      </view>
+    </view>
+
+    <!-- 商品详情 -->
+    <view class="product-detail-card">
+      <view class="detail-header">
+        <text class="detail-title">商品详情</text>
+        <button class="view-product-btn" bind:tap="onViewProduct">查看商品详情</button>
+      </view>
+      <view class="detail-content">
+        <text class="detail-text">{{product.description}}</text>
+      </view>
+    </view>
+
+    <!-- 拼团规则 -->
+    <view class="rules-card">
+      <text class="rules-title">拼团规则</text>
+      <view class="rules-list">
+        <view class="rule-item">
+          <text class="rule-number">1</text>
+          <text class="rule-text">发起或参与拼团后，需在{{activity.duration}}小时内凑满{{activity.requiredCount}}人</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">2</text>
+          <text class="rule-text">拼团成功后，系统将自动发货</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">3</text>
+          <text class="rule-text">拼团失败，款项将原路退回</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">4</text>
+          <text class="rule-text">每个用户在同一拼团活动中只能参与一次</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view wx:if="{{!loading && product}}" class="bottom-bar">
+    <!-- 查看拼团活动 -->
+    <view wx:if="{{!group}}" class="action-buttons">
+      <button class="btn-primary" bind:tap="onCreateGroup">发起拼团</button>
+    </view>
+
+    <!-- 拼团进行中 -->
+    <view wx:elif="{{group.status === 0}}" class="action-buttons">
+      <button wx:if="{{canJoin}}" class="btn-primary" bind:tap="onJoinGroup">立即参团</button>
+      <button wx:if="{{isLeader}}" class="btn-share" open-type="share">邀请好友</button>
+      <button wx:if="{{!canJoin && !isLeader}}" class="btn-disabled" disabled>拼团进行中</button>
+    </view>
+
+    <!-- 拼团已结束 -->
+    <view wx:else class="action-buttons">
+      <button class="btn-secondary" bind:tap="onCreateGroup">重新发起</button>
+    </view>
+  </view>
+</view>

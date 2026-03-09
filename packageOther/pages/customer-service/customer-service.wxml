@@ -1,0 +1,94 @@
+<!-- 客服页面 -->
+<view class="container">
+  <nav-header title="在线客服" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <view class="status-bar">
+    <view class="status-dot {{isOnline ? 'online' : 'offline'}}"></view>
+    <view class="status-text-wrap">
+      <text class="status-title">在线客服</text>
+      <text class="status-sub">{{isOnline ? '客服在线，可实时回复' : '客服离线，留言后会尽快回复'}}</text>
+    </view>
+  </view>
+
+  <scroll-view
+    class="messages-container"
+    scroll-y
+    scroll-with-animation
+    scroll-into-view="{{scrollToView}}"
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+  >
+    <view
+      class="message-item {{item.type === 'user' ? 'user-message' : 'service-message'}}"
+      wx:for="{{messages}}"
+      wx:key="id"
+      id="msg-{{item.id}}"
+    >
+      <view wx:if="{{item.type === 'service'}}" class="avatar avatar-service">
+        <text>客</text>
+      </view>
+      <image
+        wx:elif="{{userInfo.avatar}}"
+        class="avatar"
+        src="{{userInfo.avatar}}"
+        mode="aspectFill"
+      ></image>
+      <view wx:else class="avatar avatar-user">
+        <text>{{userAvatarText}}</text>
+      </view>
+
+      <view class="message-content">
+        <view wx:if="{{item.contentType === 'text'}}" class="text-content">{{item.content}}</view>
+        <image
+          wx:elif="{{item.contentType === 'image'}}"
+          class="image-content"
+          src="{{item.content}}"
+          mode="widthFix"
+          bindtap="onPreviewImage"
+          data-url="{{item.content}}"
+        ></image>
+      </view>
+    </view>
+
+    <view wx:if="{{!isOnline && messages.length <= 1}}" class="faq-section">
+      <view class="faq-header">
+        <text class="faq-title">常见问题</text>
+      </view>
+      <view class="faq-list">
+        <view
+          class="faq-item"
+          wx:for="{{faqs}}"
+          wx:key="index"
+          bindtap="onSelectFaq"
+          data-index="{{index}}"
+        >
+          <text class="faq-question">{{item.question}}</text>
+          <text class="faq-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <view class="action-btn" bindtap="onChooseImage">
+      <text class="action-icon">+</text>
+    </view>
+    <view class="input-wrap">
+      <input
+        class="message-input"
+        type="text"
+        placeholder="{{isOnline ? '请输入消息...' : '客服离线，请留言...'}}"
+        placeholder-class="input-placeholder"
+        value="{{inputText}}"
+        bindinput="onInput"
+        confirm-type="send"
+        bindconfirm="onSendText"
+        cursor-spacing="20"
+        adjust-position="{{true}}"
+      />
+    </view>
+    <view class="send-btn {{canSend ? 'send-btn-active' : ''}}" bindtap="onSendText">
+      <text>发送</text>
+    </view>
+  </view>
+</view>

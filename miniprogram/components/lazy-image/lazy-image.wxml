@@ -1,0 +1,20 @@
+<!-- 懒加载图片组件 -->
+<view class="lazy-image-wrapper" style="width: {{width}}; height: {{height}};">
+  <image 
+    wx:if="{{loaded}}"
+    class="lazy-image {{imageClass}}" 
+    src="{{src}}" 
+    mode="{{mode}}"
+    lazy-load="{{true}}"
+    bind:load="onImageLoad"
+    bind:error="onImageError"
+    style="width: {{width}}; height: {{height}};"
+  ></image>
+  <view wx:else class="lazy-image-placeholder" style="width: {{width}}; height: {{height}};">
+    <view class="placeholder-shimmer"></view>
+  </view>
+  <view wx:if="{{error}}" class="lazy-image-error" style="width: {{width}}; height: {{height}};">
+    <image class="error-icon" src="/images/icons/image-error.png"></image>
+    <text class="error-text">图片加载失败</text>
+  </view>
+</view>

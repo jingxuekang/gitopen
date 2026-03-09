@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "收货地址",
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "address-card": "/components/address-card/address-card",
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}

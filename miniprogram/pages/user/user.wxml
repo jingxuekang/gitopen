@@ -1,0 +1,139 @@
+<!--pages/user/user.wxml-->
+<view class="user-page">
+  <!-- 用户信息区域 -->
+  <view class="user-header">
+    <view wx:if="{{isLogin}}" class="user-info">
+      <!-- 头像 -->
+      <button class="avatar-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      </button>
+      
+      <!-- 用户信息 -->
+      <view class="info">
+        <input class="nickname" type="nickname" value="{{userInfo.nickname}}" placeholder="请输入昵称" bind:blur="onNicknameChange" />
+        <view class="member-badge">
+          <text class="member-level">{{memberLevels[userInfo.memberLevel]}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 未登录状态 -->
+    <view wx:else class="login-prompt">
+      <image class="avatar" src="/images/default-avatar.png" mode="aspectFill"></image>
+      <button class="login-btn" bind:tap="onLogin">点击登录</button>
+    </view>
+
+    <!-- 功能按钮 -->
+    <view wx:if="{{isLogin}}" class="action-buttons">
+      <button class="action-btn recharge-btn" bind:tap="goToRecharge">充值</button>
+      <button class="action-btn withdraw-btn" bind:tap="goToWithdraw">提现</button>
+      <button class="action-btn edit-btn" bind:tap="goToEdit">修改</button>
+    </view>
+
+    <!-- 会员升级进度 -->
+    <view wx:if="{{isLogin && userInfo.memberLevel < 2}}" class="member-progress">
+      <view class="progress-text">
+        <text>距离升级还需消费 ¥{{formatPrice(memberThresholds[userInfo.memberLevel + 1] - userInfo.totalSpent)}}</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{getMemberProgress()}}%"></view>
+      </view>
+    </view>
+
+    <!-- 会员权益 -->
+    <view wx:if="{{isLogin}}" class="member-benefits">
+      <view class="benefits-title">会员权益</view>
+      <view class="benefits-list">
+        <view wx:for="{{memberBenefits[userInfo.memberLevel]}}" wx:key="index" class="benefit-item">
+          <text class="benefit-check">✓</text>
+          <text class="benefit-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单统计 -->
+  <view wx:if="{{isLogin}}" class="order-stats">
+    <view class="stats-item" bind:tap="goToOrders" data-status="0">
+      <view class="stats-count">{{orderStats.unpaid}}</view>
+      <view class="stats-label">待付款</view>
+    </view>
+    <view class="stats-item" bind:tap="goToOrders" data-status="1">
+      <view class="stats-count">{{orderStats.unshipped}}</view>
+      <view class="stats-label">待发货</view>
+    </view>
+    <view class="stats-item" bind:tap="goToOrders" data-status="2">
+      <view class="stats-count">{{orderStats.unreceived}}</view>
+      <view class="stats-label">待收货</view>
+    </view>
+    <view class="stats-item" bind:tap="goToOrders" data-status="3">
+      <view class="stats-count">{{orderStats.unreviewed}}</view>
+      <view class="stats-label">待评价</view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="function-list">
+    <view class="function-group">
+      <view class="function-item" bind:tap="goToCart">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/cart.png"></image>
+          <text class="item-label">我的购物车</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+
+      <view class="function-item" bind:tap="goToOrders">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/order.png"></image>
+          <text class="item-label">我的订单</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+
+      <view class="function-item" bind:tap="goToMessages">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/message.png"></image>
+          <text class="item-label">我的消息</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+    </view>
+
+    <view class="function-group">
+      <view class="function-item" bind:tap="goToAddress">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/address.png"></image>
+          <text class="item-label">收货地址</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+
+      <view class="function-item" bind:tap="goToFavorite">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/favorite.png"></image>
+          <text class="item-label">我的收藏</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+
+      <view class="function-item" bind:tap="goToCoupon">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/coupon.png"></image>
+          <text class="item-label">优惠券</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+    </view>
+
+    <view class="function-group">
+      <view class="function-item" bind:tap="goToCustomerService">
+        <view class="item-left">
+          <image class="item-icon" src="/images/icons/service.png"></image>
+          <text class="item-label">联系客服</text>
+        </view>
+        <image class="arrow" src="/images/icons/arrow-right.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

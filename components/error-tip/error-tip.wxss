@@ -1,0 +1,42 @@
+/* components/error-tip/error-tip.wxss */
+.error-tip {
+  width: 100%;
+  padding: 40rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.error-icon {
+  width: 120rpx;
+  height: 120rpx;
+  opacity: 0.5;
+}
+
+.error-message {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+  padding: 0 40rpx;
+}
+
+.retry-btn {
+  margin-top: 20rpx;
+  padding: 16rpx 60rpx;
+  background-color: #5B3A29;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+.retry-btn::after {
+  border: none;
+}

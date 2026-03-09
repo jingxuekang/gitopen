@@ -1,0 +1,63 @@
+/* 前三名奖牌样式 */
+.rank-medal {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.medal-1 {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  box-shadow: 0 4rpx 16rpx rgba(255, 215, 0, 0.5);
+}
+
+.medal-2 {
+  background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%);
+  box-shadow: 0 4rpx 16rpx rgba(192, 192, 192, 0.5);
+}
+
+.medal-3 {
+  background: linear-gradient(135deg, #CD7F32 0%, #B87333 100%);
+  box-shadow: 0 4rpx 16rpx rgba(205, 127, 50, 0.5);
+}
+
+.medal-number {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+/* 第四名及以后的普通数字 */
+.rank-number-normal {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #8B6914;
+  background: #F5F0E8;
+}
+
+.ranking-item {
+  padding: 24rpx;
+}
+
+.ranking-image {
+  margin-right: 24rpx;
+}
+
+.ranking-name {
+  margin-bottom: 12rpx;
+}

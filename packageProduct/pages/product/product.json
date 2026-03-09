@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "enableShareAppMessage": true,
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "lazy-image": "/components/lazy-image/lazy-image",
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,127 @@
+<!-- 订单确认页面 -->
+<view class="container">
+  <nav-header title="确认订单" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:else>
+    <!-- 收货地址 -->
+    <view class="address-section" bindtap="onSelectAddress">
+      <view wx:if="{{hasAddress}}" class="address-card">
+        <view class="address-header">
+          <text class="icon-location">📍</text>
+          <text class="address-title">收货地址</text>
+          <text class="icon-arrow">›</text>
+        </view>
+        <view class="address-info">
+          <view class="address-name-phone">
+            <text class="name">{{address.name}}</text>
+            <text class="phone">{{address.phone}}</text>
+          </view>
+          <view class="address-detail">
+            {{address.province}} {{address.city}} {{address.district}} {{address.detail}}
+          </view>
+        </view>
+      </view>
+      
+      <view wx:else class="address-empty">
+        <text class="icon-add">+</text>
+        <text class="empty-text">添加收货地址</text>
+        <text class="icon-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class="goods-section">
+      <view class="section-title">商品清单</view>
+      <view class="goods-list">
+        <view class="goods-item" wx:for="{{items}}" wx:key="index">
+          <image class="goods-image" src="{{item.productImage}}" mode="aspectFill"></image>
+          <view class="goods-info">
+            <text class="goods-name">{{item.productName}}</text>
+            <text class="goods-spec">{{item.specText}}</text>
+            <view class="goods-price-quantity">
+              <text class="goods-price">¥{{item.priceText}}</text>
+              <view wx:if="{{sourceType === 'buy'}}" class="quantity-control">
+                <view class="qty-stepper">
+                  <view class="qty-action {{item.quantity <= 1 ? 'disabled' : ''}}" data-index="{{index}}" bindtap="onDecreaseQuantity">-</view>
+                  <input
+                    class="qty-input"
+                    type="number"
+                    value="{{item.quantity}}"
+                    data-index="{{index}}"
+                    bindblur="onInputQuantity"
+                    bindconfirm="onInputQuantity"
+                  />
+                  <view class="qty-action" data-index="{{index}}" bindtap="onIncreaseQuantity">+</view>
+                </view>
+              </view>
+              <text wx:else class="goods-quantity">x{{item.quantity}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 优惠券 -->
+    <view class="coupon-section" bindtap="onSelectCoupon">
+      <view class="coupon-row">
+        <text class="coupon-label">优惠券</text>
+        <view class="coupon-value">
+          <text wx:if="{{selectedCoupon}}" class="coupon-selected">
+            -¥{{discountAmountText}}
+          </text>
+          <text wx:else class="coupon-placeholder">
+            暂无可用优惠券
+          </text>
+          <text class="icon-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单备注 -->
+    <view class="remark-section">
+      <view class="remark-label">订单备注</view>
+      <textarea 
+        class="remark-input" 
+        placeholder="选填，请先和商家协商一致"
+        value="{{remark}}"
+        bindinput="onRemarkInput"
+        maxlength="200"
+      ></textarea>
+    </view>
+
+    <!-- 价格明细 -->
+    <view class="price-section">
+      <view class="price-row">
+        <text class="price-label">商品总价</text>
+        <text class="price-value">¥{{totalAmountText}}</text>
+      </view>
+      <view class="price-row" wx:if="{{memberDiscount > 0}}">
+        <text class="price-label">
+          <text class="member-badge">会员</text>
+          会员优惠
+        </text>
+        <text class="price-value member-discount">-¥{{memberDiscountText}}</text>
+      </view>
+      <view class="price-row" wx:if="{{discountAmount > 0}}">
+        <text class="price-label">优惠券</text>
+        <text class="price-value discount">-¥{{discountAmountText}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部提交栏 -->
+<view class="submit-bar">
+  <view class="submit-price">
+    <text class="submit-label">实付：</text>
+    <text class="submit-amount">¥{{payAmountText}}</text>
+  </view>
+  <button class="submit-button" bindtap="onSubmit" disabled="{{loading || !hasAddress}}">
+    提交订单
+  </button>
+</view>

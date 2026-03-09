@@ -1,0 +1,89 @@
+.address-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 22rpx;
+  border: 1rpx solid #EFE5D7;
+  box-shadow: 0 8rpx 20rpx rgba(67, 45, 20, 0.05);
+  box-sizing: border-box;
+}
+
+.address-card.is-selected {
+  border-color: #b8860b;
+  background: #FFF9EF;
+  box-shadow: 0 10rpx 22rpx rgba(139, 105, 20, 0.12);
+}
+
+.address-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.receiver {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.name {
+  color: #2f2a22;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.phone {
+  color: #6f634f;
+  font-size: 24rpx;
+}
+
+.default-tag {
+  border-radius: 999rpx;
+  padding: 4rpx 14rpx;
+  background: rgba(139, 105, 20, 0.92);
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.address-detail {
+  margin-top: 12rpx;
+  color: #5f5442;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.address-actions {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18rpx;
+  padding-top: 14rpx;
+  border-top: 1rpx solid #F3ECE1;
+}
+
+.action {
+  color: #8b7b63;
+  font-size: 24rpx;
+}
+
+.action.danger {
+  color: #d55f48;
+}
+
+.select-actions {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.select-icon {
+  color: #8b7b63;
+  font-size: 28rpx;
+}
+
+.select-edit {
+  color: #8b7b63;
+  font-size: 24rpx;
+}

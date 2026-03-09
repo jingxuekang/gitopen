@@ -1,0 +1,103 @@
+/* 新排行榜样式 */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #FFFBF5;
+  border-radius: 16rpx;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 2rpx 8rpx rgba(139, 105, 20, 0.08);
+}
+
+.ranking-item:active {
+  background: #FFF8ED;
+  transform: scale(0.98);
+}
+
+.rank-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #8B6914;
+  background: linear-gradient(135deg, #FFF4D9 0%, #FFE8B8 100%);
+  border-radius: 16rpx 0 16rpx 0;
+}
+
+.rank-badge.top {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2rpx 8rpx rgba(212, 175, 55, 0.4);
+}
+
+.ranking-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  margin-left: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.ranking-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120rpx;
+}
+
+.ranking-name {
+  font-size: 28rpx;
+  color: #3D2817;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 8rpx;
+}
+
+.ranking-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ranking-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.ranking-price .price-symbol {
+  font-size: 24rpx;
+  color: #B5702E;
+  font-weight: 600;
+  margin-right: 2rpx;
+}
+
+.ranking-price .price-value {
+  font-size: 36rpx;
+  color: #B5702E;
+  font-weight: 700;
+}
+
+.ranking-stats {
+  font-size: 24rpx;
+  color: #A89888;
+  padding: 4rpx 12rpx;
+  background: rgba(139, 105, 20, 0.08);
+  border-radius: 12rpx;
+}

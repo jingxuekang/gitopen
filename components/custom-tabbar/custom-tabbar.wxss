@@ -1,0 +1,195 @@
+/* TabBar */
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  padding: 0 8rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: #FFFCF6;
+  border-top: 1rpx solid #EDE5D8;
+  box-shadow: 0 -4rpx 16rpx rgba(67, 45, 20, 0.06);
+  display: flex;
+  align-items: stretch;
+}
+
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 0 8rpx;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tabbar-item:active {
+  opacity: 0.75;
+}
+
+/* ===== 图标通用 ===== */
+.tab-icon {
+  width: 44rpx;
+  height: 44rpx;
+  position: relative;
+  margin-bottom: 4rpx;
+}
+
+/* ===== 首页图标 ===== */
+.icon-home .home-roof {
+  position: absolute;
+  top: 2rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 16rpx solid #8F8273;
+  transition: border-bottom-color 0.2s;
+}
+
+.icon-home .home-body {
+  position: absolute;
+  bottom: 2rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28rpx;
+  height: 22rpx;
+  border: 3rpx solid #8F8273;
+  border-radius: 3rpx;
+  border-top: none;
+  transition: border-color 0.2s;
+}
+
+.tabbar-item.active .icon-home .home-roof {
+  border-bottom-color: #8B6914;
+}
+
+.tabbar-item.active .icon-home .home-body {
+  border-color: #8B6914;
+}
+
+/* ===== 分类图标 ===== */
+.icon-category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rpx;
+  padding: 4rpx;
+}
+
+.icon-category .grid-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 4rpx;
+  background: #8F8273;
+  transition: background 0.2s;
+}
+
+.tabbar-item.active .icon-category .grid-dot {
+  background: #8B6914;
+}
+
+/* ===== 购物车图标 ===== */
+.icon-cart .cart-bag {
+  position: absolute;
+  bottom: 2rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 24rpx;
+  border: 3rpx solid #8F8273;
+  border-radius: 0 0 8rpx 8rpx;
+  border-top: none;
+  transition: border-color 0.2s;
+}
+
+.icon-cart .cart-handle {
+  position: absolute;
+  top: 4rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20rpx;
+  height: 14rpx;
+  border: 3rpx solid #8F8273;
+  border-radius: 10rpx 10rpx 0 0;
+  border-bottom: none;
+  transition: border-color 0.2s;
+}
+
+.tabbar-item.active .icon-cart .cart-bag {
+  border-color: #8B6914;
+}
+
+.tabbar-item.active .icon-cart .cart-handle {
+  border-color: #8B6914;
+}
+
+/* ===== 我的图标 ===== */
+.icon-user .user-head {
+  position: absolute;
+  top: 2rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  border: 3rpx solid #8F8273;
+  transition: border-color 0.2s;
+}
+
+.icon-user .user-body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rpx;
+  height: 16rpx;
+  border: 3rpx solid #8F8273;
+  border-radius: 16rpx 16rpx 0 0;
+  border-bottom: none;
+  transition: border-color 0.2s;
+}
+
+.tabbar-item.active .icon-user .user-head {
+  border-color: #8B6914;
+}
+
+.tabbar-item.active .icon-user .user-body {
+  border-color: #8B6914;
+}
+
+/* ===== 文字 ===== */
+.tabbar-text {
+  font-size: 20rpx;
+  color: #8F8273;
+  line-height: 1.2;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.tabbar-item.active .tabbar-text {
+  color: #8B6914;
+  font-weight: 600;
+}
+
+/* ===== 角标 ===== */
+.tab-badge {
+  position: absolute;
+  top: 4rpx;
+  right: 50%;
+  transform: translateX(26rpx);
+  min-width: 28rpx;
+  height: 28rpx;
+  padding: 0 8rpx;
+  border-radius: 28rpx;
+  background: #B5702E;
+  color: #FFFFFF;
+  font-size: 18rpx;
+  font-weight: 600;
+  line-height: 28rpx;
+  text-align: center;
+  z-index: 10;
+}

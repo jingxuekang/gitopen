@@ -1,0 +1,268 @@
+/* pages/review/review.wxss */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F5EBD9 0%, #F8F4EC 100%);
+  padding: 16rpx 20rpx 26rpx;
+}
+
+.loading-wrap {
+  margin-top: 10rpx;
+  border-radius: 18rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(77, 54, 30, 0.06);
+  min-height: 280rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8E7D67;
+  font-size: 26rpx;
+}
+
+.order-items-section,
+.product-section,
+.rating-section,
+.content-section,
+.images-section {
+  margin-top: 14rpx;
+  border-radius: 18rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(77, 54, 30, 0.06);
+  padding: 22rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 29rpx;
+  font-weight: 700;
+  color: #2F2A22;
+  margin-bottom: 16rpx;
+}
+
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.order-item-card {
+  display: flex;
+  align-items: center;
+  border-radius: 14rpx;
+  border: 1rpx solid #ECE1D0;
+  background: #FFFFFF;
+  padding: 16rpx;
+}
+
+.order-item-card.active {
+  border-color: #D8B78C;
+  background: #FFF6E8;
+}
+
+.order-item-card.reviewed {
+  opacity: 0.65;
+}
+
+.order-item-image {
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 10rpx;
+  margin-right: 14rpx;
+  flex-shrink: 0;
+  background: #F7F2E9;
+}
+
+.order-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-item-name {
+  display: block;
+  font-size: 26rpx;
+  color: #2F2A22;
+  line-height: 1.42;
+}
+
+.order-item-spec {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #998D7F;
+}
+
+.order-item-bottom {
+  margin-top: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-item-price {
+  font-size: 23rpx;
+  color: #75695B;
+}
+
+.review-tag {
+  min-height: 38rpx;
+  padding: 0 12rpx;
+  border-radius: 19rpx;
+  font-size: 21rpx;
+  display: inline-flex;
+  align-items: center;
+}
+
+.review-tag.wait {
+  color: #8D6439;
+  background: #FFF2DE;
+  border: 1rpx solid #E4C59D;
+}
+
+.review-tag.done {
+  color: #8E857A;
+  background: #F1ECE4;
+}
+
+.product-section {
+  display: flex;
+  align-items: center;
+}
+
+.product-image {
+  width: 116rpx;
+  height: 116rpx;
+  border-radius: 12rpx;
+  margin-right: 16rpx;
+  background: #F7F2E9;
+}
+
+.product-name {
+  flex: 1;
+  font-size: 27rpx;
+  line-height: 1.45;
+  color: #2F2A22;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.star {
+  font-size: 52rpx;
+  color: #D9CCBA;
+  line-height: 1;
+}
+
+.star.active {
+  color: #D79A48;
+}
+
+.rating-text {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #8B7E70;
+}
+
+.content-input {
+  width: 100%;
+  min-height: 190rpx;
+  border-radius: 14rpx;
+  border: 1rpx solid #ECE1D0;
+  background: #F9F5EE;
+  padding: 14rpx 16rpx;
+  font-size: 26rpx;
+  line-height: 1.65;
+  color: #3F362D;
+  box-sizing: border-box;
+}
+
+.char-count {
+  display: block;
+  margin-top: 8rpx;
+  text-align: right;
+  font-size: 21rpx;
+  color: #A29482;
+}
+
+.images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.image-item {
+  position: relative;
+  width: 186rpx;
+  height: 186rpx;
+}
+
+.image-item .image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.delete-btn {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 18rpx;
+  background: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
+  font-size: 28rpx;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-image {
+  width: 186rpx;
+  height: 186rpx;
+  border-radius: 12rpx;
+  border: 2rpx dashed #DCCFB8;
+  background: #FBF8F1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9D9080;
+}
+
+.add-icon {
+  font-size: 50rpx;
+  line-height: 1;
+}
+
+.add-text {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+}
+
+.submit-section {
+  margin-top: 18rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 84rpx;
+  border-radius: 42rpx;
+  border: none;
+  background: linear-gradient(135deg, #83643D 0%, #644A2D 100%);
+  color: #FFF8EA;
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn[disabled] {
+  background: #D7D1C8;
+  color: #FFFFFF;
+}

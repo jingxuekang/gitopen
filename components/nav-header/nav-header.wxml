@@ -1,0 +1,15 @@
+<!--components/nav-header/nav-header.wxml-->
+<view class="nav-header" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-content">
+    <view class="nav-back tap-active" wx:if="{{showBack}}" bindtap="onBack">
+      <view class="back-arrow"></view>
+    </view>
+    <view class="nav-logo-wrap">
+      <image class="nav-logo" src="/images/brand-logo.png" mode="heightFix"></image>
+      <text class="nav-title">{{title}}</text>
+    </view>
+    <view class="nav-right">
+      <slot name="right"></slot>
+    </view>
+  </view>
+</view>

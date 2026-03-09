@@ -1,0 +1,17 @@
+<view class="coupon-card status-{{vm.statusKey}} {{selected ? 'is-selected' : ''}}" bindtap="onTap">
+  <view class="left">
+    <text class="currency">¥</text>
+    <text class="amount">{{vm.amountText}}</text>
+  </view>
+  <view class="main">
+    <text class="title">{{coupon.name || coupon.title || '优惠券'}}</text>
+    <text class="desc">{{vm.thresholdText}}</text>
+    <text wx:if="{{vm.expireText}}" class="expire">有效期至 {{vm.expireText}}</text>
+  </view>
+  <view class="right">
+    <text class="status">{{vm.statusText}}</text>
+    <text wx:if="{{showAction && vm.statusKey === 'available'}}" class="action" catchtap="onAction">
+      {{actionText || (selectable ? '使用' : '领取')}}
+    </text>
+  </view>
+</view>

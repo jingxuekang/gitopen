@@ -1,0 +1,36 @@
+<!-- 收藏列表页面 -->
+<view class="container">
+  <view wx:if="{{loading && favorites.length === 0}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:elif="{{favorites.length === 0}}" class="empty">
+    <text class="empty-icon">💝</text>
+    <text class="empty-text">还没有收藏商品</text>
+    <button class="go-shopping-btn" bindtap="onGoShopping">去逛逛</button>
+  </view>
+
+  <view wx:else class="favorites-list">
+    <view class="favorite-item" wx:for="{{favorites}}" wx:key="_id">
+      <view class="product-info" bindtap="onViewProduct" data-id="{{item.productId}}">
+        <image class="product-image" src="{{item.productInfo.images[0]}}" mode="aspectFill"></image>
+        <view class="product-details">
+          <text class="product-name">{{item.productInfo.name}}</text>
+          <text class="product-desc">{{item.productInfo.description}}</text>
+          <view class="product-footer">
+            <text class="product-price">¥{{item.formattedPrice}}</text>
+            <text class="product-sales">已售{{item.productInfo.sales}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="actions">
+        <button class="action-btn remove" bindtap="onRemoveFavorite" data-id="{{item.productId}}">取消收藏</button>
+        <button class="action-btn add-cart" bindtap="onAddToCart" data-id="{{item.productId}}">加入购物车</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!hasMore && favorites.length > 0}}" class="no-more">
+    <text>没有更多了</text>
+  </view>
+</view>

@@ -1,0 +1,320 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F5EBD9 0%, #F8F4EC 100%);
+  padding: 0 32rpx;
+  box-sizing: border-box;
+}
+
+.login-header {
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: env(safe-area-inset-top);
+  border-bottom: 1rpx solid rgba(139, 105, 20, 0.14);
+}
+
+.back-btn {
+  font-size: 44rpx;
+  color: #5B3A29;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 33rpx;
+  font-weight: 600;
+  color: #5B3A29;
+  letter-spacing: 1rpx;
+}
+
+.brand-wrap {
+  margin-top: 112rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+}
+
+.logo-mark {
+  width: 98rpx;
+  height: 98rpx;
+  border-radius: 22rpx;
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+  font-size: 52rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text-wrap {
+  margin-left: 14rpx;
+}
+
+.brand-logo {
+  display: block;
+  font-size: 58rpx;
+  font-weight: 700;
+  color: #5B3A29;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  display: block;
+  margin-top: 6rpx;
+  color: #8B6914;
+  font-size: 24rpx;
+  letter-spacing: 6rpx;
+}
+
+.btn-group {
+  margin-top: 100rpx;
+}
+
+.login-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 1;
+  border-radius: 44rpx;
+  border: none;
+  font-size: 29rpx;
+  font-weight: 600;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.primary-btn {
+  width: 100%;
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+  box-shadow: 0 8rpx 20rpx rgba(91, 58, 41, 0.2);
+  font-size: 29rpx;
+  font-weight: 600;
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+.ghost-btn {
+  width: 100%;
+  height: 84rpx;
+  margin-top: 14rpx;
+  border-radius: 42rpx;
+  background: #fff;
+  border: 2rpx solid #E8E0D8;
+  color: #8C7B6B;
+  font-size: 27rpx;
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-btn::after,
+.ghost-btn::after {
+  border: none;
+}
+
+.agreement-row {
+  margin-top: 110rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6rpx;
+}
+
+.checkbox {
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 17rpx;
+  border: 1rpx solid #B8A898;
+  margin-right: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checked {
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  border-color: transparent;
+}
+
+.check-mark {
+  color: #FFF8E7;
+  font-size: 24rpx;
+}
+
+.agreement-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: #8C7B6B;
+  line-height: 1.5;
+}
+
+.agreement-links {
+  margin-top: 8rpx;
+  display: flex;
+  align-items: center;
+}
+
+.agreement-link {
+  color: #8B6914;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.agreement-sep {
+  margin: 0 6rpx;
+  color: #8C7B6B;
+  font-size: 32rpx;
+}
+
+.skip-text {
+  margin-top: 84rpx;
+  display: block;
+  text-align: center;
+  font-size: 25rpx;
+  color: #8C7B6B;
+}
+
+/* 手机号登录弹窗样式 */
+.phone-login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.modal-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #5B3A29;
+}
+
+.close-btn {
+  font-size: 48rpx;
+  color: #8C7B6B;
+  padding: 10rpx;
+}
+
+.form-group {
+  margin-bottom: 30rpx;
+}
+
+.phone-input,
+.code-input {
+  width: 100%;
+  height: 88rpx;
+  border: 2rpx solid #E8E0D8;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 32rpx;
+  color: #5B3A29;
+  box-sizing: border-box;
+}
+
+.code-input-group {
+  display: flex;
+  gap: 20rpx;
+}
+
+.code-input {
+  flex: 1;
+}
+
+.send-code-btn {
+  width: 200rpx;
+  height: 88rpx;
+  border: 2rpx solid #8B6914;
+  border-radius: 12rpx;
+  background: #fff;
+  color: #8B6914;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-code-btn.disabled {
+  background: #F5F5F5;
+  color: #B8A898;
+  border-color: #E8E0D8;
+}
+
+.send-code-btn::after {
+  border: none;
+}
+
+.confirm-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.confirm-btn::after {
+  border: none;
+}
+
+.confirm-btn[disabled] {
+  background: #E8E0D8;
+  color: #B8A898;
+}

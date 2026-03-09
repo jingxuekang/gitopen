@@ -1,0 +1,35 @@
+<view class="order-item" bindtap="onTap">
+  <view class="order-header">
+    <text class="order-no">订单号：{{vm.orderNo}}</text>
+    <text class="order-status">{{vm.statusText}}</text>
+  </view>
+
+  <view class="goods-list">
+    <view class="goods-item" wx:for="{{vm.items}}" wx:key="index">
+      <image
+        class="goods-image"
+        src="{{(item.images && item.images[0]) || item.image || item.productImage || '/images/empty/product.png'}}"
+        mode="aspectFill"
+      />
+      <view class="goods-info">
+        <text class="goods-name">{{item.name || item.productName || '商品'}}</text>
+        <text class="goods-spec">{{item.specText || item.spec || ''}}</text>
+      </view>
+      <view class="goods-price">
+        <text class="item-price">¥{{item.displayPrice || '0.00'}}</text>
+        <text class="item-quantity">×{{item.quantityText || 1}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-footer">
+    <text class="order-amount">合计：¥{{vm.amountText}}</text>
+    <view class="actions">
+      <text wx:if="{{vm.canCancel}}" class="action-btn" catchtap="onCancel">取消订单</text>
+      <text wx:if="{{vm.canPay}}" class="action-btn action-primary" catchtap="onPay">立即支付</text>
+      <text wx:if="{{vm.canConfirm}}" class="action-btn action-primary" catchtap="onConfirm">确认收货</text>
+      <text wx:if="{{vm.canBuyAgain}}" class="action-btn" catchtap="onBuyAgain">再次购买</text>
+      <text wx:if="{{vm.canReview}}" class="action-btn action-primary" catchtap="onReview">去评价</text>
+    </view>
+  </view>
+</view>

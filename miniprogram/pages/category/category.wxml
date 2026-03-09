@@ -1,0 +1,158 @@
+<!--pages/category/category.wxml-->
+<view class="category-page">
+  <!-- 分类列表 -->
+  <view class="category-sidebar">
+    <view 
+      class="category-item {{currentCategory === item.id ? 'active' : ''}}" 
+      wx:for="{{categories}}" 
+      wx:key="id"
+      bind:tap="switchCategory"
+      data-category="{{item.id}}"
+    >
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 右侧内容区 -->
+  <view class="content-area">
+    <!-- 筛选区域 -->
+    <view class="filter-area">
+      <!-- 茶叶筛选 -->
+      <block wx:if="{{currentCategory === 'tea'}}">
+        <view class="filter-group" wx:for="{{teaFilters}}" wx:for-item="filterItem" wx:for-index="filterKey" wx:key="filterKey">
+          <view class="filter-header" bind:tap="toggleFilter" data-filter="{{filterKey}}">
+            <view class="filter-title-row">
+              <text class="filter-name">{{filterItem.name}}</text>
+              <text wx:if="{{!filterItem.expanded && filterItem.selected !== 'all'}}" class="filter-selected-tag">{{filterItem.selectedName || ''}}</text>
+            </view>
+            <text class="filter-icon {{filterItem.expanded ? 'expanded' : ''}}">▼</text>
+          </view>
+          <view class="filter-options {{filterItem.expanded ? 'show' : ''}}">
+            <view 
+              class="filter-option {{filterItem.selected === option.id ? 'active' : ''}}"
+              wx:for="{{filterItem.options}}"
+              wx:for-item="option"
+              wx:key="id"
+              bind:tap="selectFilter"
+              data-filter="{{filterKey}}"
+              data-option="{{option.id}}"
+            >
+              <image
+                wx:if="{{currentCategory === 'tea' && filterKey === 'type' && option.icon}}"
+                class="filter-option-icon"
+                src="{{option.icon}}"
+                mode="aspectFill"
+              ></image>
+              <text>{{option.name === '普通茶园' ? '常规' : option.name}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- 陈皮筛选 -->
+      <block wx:if="{{currentCategory === 'chenpi'}}">
+        <view class="filter-group" wx:for="{{chenpiFilters}}" wx:for-item="filterItem" wx:for-index="filterKey" wx:key="filterKey">
+          <view class="filter-header" bind:tap="toggleFilter" data-filter="{{filterKey}}">
+            <view class="filter-title-row">
+              <text class="filter-name">{{filterItem.name}}</text>
+              <text wx:if="{{!filterItem.expanded && filterItem.selected !== 'all'}}" class="filter-selected-tag">{{filterItem.selectedName || ''}}</text>
+            </view>
+            <text class="filter-icon {{filterItem.expanded ? 'expanded' : ''}}">▼</text>
+          </view>
+          <view class="filter-options {{filterItem.expanded ? 'show' : ''}}">
+            <view 
+              class="filter-option {{filterItem.selected === option.id ? 'active' : ''}}"
+              wx:for="{{filterItem.options}}"
+              wx:for-item="option"
+              wx:key="id"
+              bind:tap="selectFilter"
+              data-filter="{{filterKey}}"
+              data-option="{{option.id}}"
+            >
+              {{option.name === '普通茶园' ? '常规' : option.name}}
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- 紫砂壶筛选 -->
+      <block wx:if="{{currentCategory === 'teapot'}}">
+        <view class="filter-group" wx:for="{{teapotFilters}}" wx:for-item="filterItem" wx:for-index="filterKey" wx:key="filterKey">
+          <view class="filter-header" bind:tap="toggleFilter" data-filter="{{filterKey}}">
+            <view class="filter-title-row">
+              <text class="filter-name">{{filterItem.name}}</text>
+              <text wx:if="{{!filterItem.expanded && filterItem.selected !== 'all'}}" class="filter-selected-tag">{{filterItem.selectedName || ''}}</text>
+            </view>
+            <text class="filter-icon {{filterItem.expanded ? 'expanded' : ''}}">▼</text>
+          </view>
+          <view class="filter-options {{filterItem.expanded ? 'show' : ''}}">
+            <view 
+              class="filter-option {{filterItem.selected === option.id ? 'active' : ''}}"
+              wx:for="{{filterItem.options}}"
+              wx:for-item="option"
+              wx:key="id"
+              bind:tap="selectFilter"
+              data-filter="{{filterKey}}"
+              data-option="{{option.id}}"
+            >
+              {{option.name === '普通茶园' ? '常规' : option.name}}
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 商品列表 -->
+    <scroll-view class="product-list" scroll-y>
+      <!-- 错误提示 -->
+      <error-tip 
+        wx:if="{{error}}"
+        show="{{error}}"
+        message="{{errorMessage}}"
+        bind:retry="onRetry"
+      />
+
+      <view class="product-grid" wx:if="{{!error}}">
+        <view class="product-item" wx:for="{{products}}" wx:key="_id" bind:tap="goToProduct" data-id="{{item._id}}">
+          <image class="product-image" src="{{item.images[0]}}" mode="aspectFill"></image>
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <view class="product-footer">
+              <view class="product-price">
+                <view wx:if="{{memberLevel > 0}}" class="member-price-wrapper">
+                  <view class="member-price">
+                    <text class="member-tag">会员</text>
+                    <text class="price-symbol">¥</text>
+                    <text class="price-integer">{{getMemberPrice(item.price)}}</text>
+                  </view>
+                  <text class="original-price">¥{{formatPrice(item.price)}}</text>
+                </view>
+                <view wx:else>
+                  <text class="price-symbol">¥</text>
+                  <text class="price-integer">{{formatPrice(item.price)}}</text>
+                </view>
+              </view>
+              <text class="product-sales">已售{{item.sales}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 加载状态 -->
+      <view wx:if="{{loading && !error}}" class="loading">
+        <text>加载中...</text>
+      </view>
+
+      <!-- 没有更多 -->
+      <view wx:if="{{!hasMore && products.length > 0 && !error}}" class="no-more">
+        <text>没有更多了</text>
+      </view>
+
+      <!-- 空状态 -->
+      <view wx:if="{{!loading && products.length === 0 && !error}}" class="empty-state">
+        <image src="/images/empty/product.png"></image>
+        <text>暂无商品</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

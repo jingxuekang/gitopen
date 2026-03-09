@@ -1,0 +1,191 @@
+<!--pages/index/index.wxml-->
+  <view class="index-page">
+  <view class="home-header">
+    <!-- 第一行：状态栏占位 -->
+    <view class="status-bar-placeholder"></view>
+    <!-- 第二行：Logo + 品牌名居中 -->
+    <view class="brand-row">
+      <image class="brand-logo" src="/images/brand-logo.png" mode="heightFix"></image>
+      <text class="brand-name">报告茶友</text>
+    </view>
+    <!-- 第三行：定位 + 搜索框 -->
+    <view class="header-action-bar">
+      <view class="header-location tap-active" bindtap="onTapLocation">
+        <view class="location-pin">
+          <view class="location-pin-dot"></view>
+        </view>
+        <text class="location-name">{{locating ? '定位中...' : locationName}}</text>
+        <text class="location-arrow">›</text>
+      </view>
+      <view class="header-search tap-active" bindtap="goToSearch">
+        <view class="search-icon-wrap">
+          <view class="search-icon-circle"></view>
+          <view class="search-icon-handle"></view>
+        </view>
+        <text class="search-keyword">{{searchHint}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 骨架屏 -->
+  <view wx:if="{{loading && !banners.length}}">
+    <view class="skeleton-banner"></view>
+    <view class="skeleton-categories">
+      <view class="skeleton-category-item" wx:for="{{[1,2,3]}}" wx:key="index"></view>
+    </view>
+    <skeleton type="product-card" wx:for="{{[1,2,3,4]}}" wx:key="index"></skeleton>
+  </view>
+
+  <!-- 内容区域 -->
+  <view wx:else>
+    <!-- 轮播图 -->
+    <swiper 
+      class="banner-swiper" 
+      circular
+      autoplay
+      duration="500"
+      indicator-dots="{{true}}"
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#ffffff"
+    >
+      <swiper-item wx:for="{{banners}}" wx:key="_id" class="banner-item">
+        <view class="banner-card">
+          <image class="banner-image" src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 产品溯源 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">产品溯源</text>
+      </view>
+      <view class="category-grid">
+        <view class="category-item tap-active" wx:for="{{categories}}" wx:key="id" bind:tap="goToTrace" data-category="{{item.id}}">
+          <lazy-image 
+            src="{{item.icon}}" 
+            width="120rpx"
+            height="120rpx"
+            imageClass="category-icon"
+          ></lazy-image>
+          <text class="category-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 排行榜 -->
+    <view class="section ranking-section">
+      <view class="section-header">
+        <text class="section-title">排行榜</text>
+      </view>
+      
+      <!-- 排行榜Tab -->
+      <view class="rank-tabs">
+        <view 
+          class="rank-tab {{currentRankTab === item.id ? 'active' : ''}}"
+          wx:for="{{rankTabs}}"
+          wx:key="id"
+          bind:tap="switchRankTab"
+          data-tab="{{item.id}}"
+        >
+          {{item.name}}
+        </view>
+      </view>
+
+      <!-- 排行榜列表 -->
+      <view class="ranking-list">
+        <view 
+          class="ranking-item tap-active" 
+          wx:for="{{rankingList}}" 
+          wx:for-index="index"
+          wx:key="_id" 
+          bind:tap="goToProduct" 
+          data-id="{{item._id}}"
+        >
+          <!-- 前三名显示奖牌 -->
+          <view wx:if="{{index < 3}}" class="rank-medal medal-{{index + 1}}">
+            <text class="medal-number">{{index + 1}}</text>
+          </view>
+          <!-- 第四名及以后显示普通数字 -->
+          <view wx:else class="rank-number-normal">{{index + 1}}</view>
+          <lazy-image 
+            src="{{item.images[0]}}" 
+            mode="aspectFill"
+            width="120rpx"
+            height="120rpx"
+            imageClass="ranking-image"
+          ></lazy-image>
+          <view class="ranking-info">
+            <text class="ranking-name">{{item.name}}</text>
+            <view class="ranking-bottom">
+              <view class="ranking-price">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">{{item.priceText || getRankingPrice(item)}}</text>
+              </view>
+              <view class="ranking-stats">
+                <text wx:if="{{currentRankTab === 'sales'}}">销量 {{item.sales}}</text>
+                <text wx:if="{{currentRankTab === 'rating'}}">评分 {{item.rating}}</text>
+                <text wx:if="{{currentRankTab === 'price'}}">推荐</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 拼团专区 -->
+    <view wx:if="{{groupActivities.length > 0}}" class="section">
+      <view class="section-header">
+        <text class="section-title">拼团专区</text>
+        <view class="section-more tap-active" bind:tap="goToGroupList">
+          <text>更多</text>
+          <text class="arrow-text">›</text>
+        </view>
+      </view>
+      <scroll-view class="group-scroll" scroll-x enable-flex>
+        <view class="group-item tap-active" wx:for="{{groupActivities}}" wx:key="_id" bind:tap="goToGroup" data-id="{{item._id}}">
+          <lazy-image 
+            src="{{item.product.images[0]}}" 
+            mode="aspectFill"
+            width="100%"
+            height="280rpx"
+            imageClass="group-image"
+          ></lazy-image>
+          <view class="group-info">
+            <text class="group-name">{{item.product.name}}</text>
+            <view class="group-price">
+              <text class="price-label">拼团价</text>
+              <text class="price">¥{{formatPrice(item.groupPrice)}}</text>
+              <text class="original-price">¥{{formatPrice(item.originalPrice)}}</text>
+            </view>
+            <view class="group-tag">{{item.requiredCount}}人团</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 新品推荐 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">新品推荐</text>
+      </view>
+      <view class="product-grid">
+        <product-card
+          wx:for="{{newProducts}}"
+          wx:key="_id"
+          class="home-product-card"
+          product="{{item}}"
+          showMemberPrice="{{memberLevel > 0}}"
+          layout="vertical"
+          bind:tap="goToProduct"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部安全区域 -->
+  <view class="safe-area-bottom"></view>
+  
+  <!-- 底部导航栏 -->
+  <custom-tabbar current="0" />
+</view>

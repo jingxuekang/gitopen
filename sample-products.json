@@ -1,0 +1,201 @@
+[
+  {
+    "name": "福鼎白茶 白毫银针 特级",
+    "category": "tea",
+    "subCategory": "银针",
+    "year": "五年",
+    "price": 29800,
+    "originalPrice": 39800,
+    "image": "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800",
+      "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800"
+    ],
+    "sales": 1580,
+    "rating": 4.9,
+    "stock": 100,
+    "description": "福鼎白茶，五年陈化，香气浓郁，汤色杏黄明亮，滋味鲜爽甘醇。采用传统工艺制作，自然萎凋，不炒不揉，保留茶叶最原始的风味。",
+    "origin": "福建福鼎",
+    "weight": "50g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "福鼎白茶 白牡丹 一级",
+    "category": "tea",
+    "subCategory": "牡丹",
+    "year": "三年",
+    "price": 18800,
+    "originalPrice": 25800,
+    "image": "https://images.unsplash.com/photo-1597318130878-aa7d6e0d4c86?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1597318130878-aa7d6e0d4c86?w=800",
+      "https://images.unsplash.com/photo-1563822249366-3efb6c2b6e8e?w=800"
+    ],
+    "sales": 2340,
+    "rating": 4.8,
+    "stock": 150,
+    "description": "白牡丹，三年陈化，口感醇厚，香气清雅。一芽一二叶，芽叶连枝，形似花朵，冲泡后绿叶托着嫩芽，宛如蓓蕾初放。",
+    "origin": "福建福鼎",
+    "weight": "100g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "福鼎白茶 寿眉 特级",
+    "category": "tea",
+    "subCategory": "寿眉",
+    "year": "一年",
+    "price": 12800,
+    "originalPrice": 16800,
+    "image": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=800"
+    ],
+    "sales": 3200,
+    "rating": 4.7,
+    "stock": 200,
+    "description": "寿眉新茶，清香怡人，性价比高。采摘标准为一芽三四叶，叶片稍大，茶梗明显，但滋味醇和，适合日常品饮。",
+    "origin": "福建福鼎",
+    "weight": "200g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "福鼎白茶 贡眉 特级",
+    "category": "tea",
+    "subCategory": "贡眉",
+    "year": "十年",
+    "price": 48800,
+    "originalPrice": 68800,
+    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800"
+    ],
+    "sales": 680,
+    "rating": 5.0,
+    "stock": 50,
+    "description": "十年陈贡眉，药香浓郁，汤色深红，滋味醇厚甘甜。长期存放后，茶性温和，具有很好的保健功效。",
+    "origin": "福建福鼎",
+    "weight": "50g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "新会陈皮 天马产区 十年陈",
+    "category": "chenpi",
+    "subCategory": "天马",
+    "year": "十年",
+    "price": 46800,
+    "originalPrice": 58800,
+    "image": "https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=800"
+    ],
+    "sales": 980,
+    "rating": 4.9,
+    "stock": 80,
+    "description": "新会陈皮，天马核心产区，十年陈化。皮薄油亮，香气浓郁，具有理气健脾、燥湿化痰的功效。可泡茶、煲汤、入药。",
+    "origin": "广东新会天马",
+    "weight": "50g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "新会陈皮 茶坑产区 五年陈",
+    "category": "chenpi",
+    "subCategory": "茶坑",
+    "year": "五年",
+    "price": 28800,
+    "originalPrice": 38800,
+    "image": "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800"
+    ],
+    "sales": 1450,
+    "rating": 4.8,
+    "stock": 120,
+    "description": "茶坑产区五年陈皮，香气清新，口感醇和。茶坑与天马、梅江并称新会三大核心产区，品质上乘。",
+    "origin": "广东新会茶坑",
+    "weight": "100g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "新会陈皮 梅江产区 三年陈",
+    "category": "chenpi",
+    "subCategory": "梅江",
+    "year": "三年",
+    "price": 18800,
+    "originalPrice": 25800,
+    "image": "https://images.unsplash.com/photo-1615485500834-bc10199bc727?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1615485500834-bc10199bc727?w=800"
+    ],
+    "sales": 2100,
+    "rating": 4.7,
+    "stock": 180,
+    "description": "梅江产区三年陈皮，性价比高，适合日常养生。香气柔和，口感清甜，是入门陈皮的好选择。",
+    "origin": "广东新会梅江",
+    "weight": "100g",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "宜兴紫砂壶 子冶石瓢 全手工",
+    "category": "teapot",
+    "subCategory": "子冶石瓢",
+    "material": "紫泥",
+    "craftType": "全手工",
+    "price": 128000,
+    "originalPrice": 168000,
+    "image": "https://images.unsplash.com/photo-1578894381163-e72c17f2d45f?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1578894381163-e72c17f2d45f?w=800",
+      "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800"
+    ],
+    "sales": 156,
+    "rating": 5.0,
+    "stock": 20,
+    "description": "子冶石瓢，紫砂经典器型，线条流畅，比例协调。采用优质紫泥，全手工制作，透气性好，泡茶不失原味，越用越润。",
+    "origin": "江苏宜兴",
+    "capacity": "200ml",
+    "artist": "王师傅",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "宜兴紫砂壶 德钟 半手工",
+    "category": "teapot",
+    "subCategory": "德钟",
+    "material": "底槽清",
+    "craftType": "半手工",
+    "price": 68000,
+    "originalPrice": 88000,
+    "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800"
+    ],
+    "sales": 280,
+    "rating": 4.8,
+    "stock": 35,
+    "description": "德钟壶型，端庄大气，适合泡普洱、岩茶等重口味茶。底槽清泥料，泥质细腻，色泽温润，半手工制作，性价比高。",
+    "origin": "江苏宜兴",
+    "capacity": "250ml",
+    "artist": "李师傅",
+    "createTime": 1707820800000
+  },
+  {
+    "name": "宜兴紫砂壶 掇只 全手工",
+    "category": "teapot",
+    "subCategory": "掇只",
+    "material": "天青泥",
+    "craftType": "全手工",
+    "price": 158000,
+    "originalPrice": 208000,
+    "image": "https://images.unsplash.com/photo-1606312619070-d48b4cda8e6f?w=800",
+    "images": [
+      "https://images.unsplash.com/photo-1606312619070-d48b4cda8e6f?w=800"
+    ],
+    "sales": 98,
+    "rating": 5.0,
+    "stock": 15,
+    "description": "掇只壶，圆润饱满，气韵生动。天青泥料，色泽青灰，质地细腻。全手工制作，每一把都是独一无二的艺术品。",
+    "origin": "江苏宜兴",
+    "capacity": "180ml",
+    "artist": "张师傅",
+    "createTime": 1707820800000
+  }
+]

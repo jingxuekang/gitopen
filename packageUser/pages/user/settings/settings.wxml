@@ -1,0 +1,20 @@
+<!-- pages/user/settings/settings.wxml -->
+<view class="settings-page">
+  <nav-header title="设置" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <view class="group">
+    <view
+      class="item"
+      wx:for="{{settingsList}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onTapSetting"
+    >
+      <text class="item-name">{{item.name}}</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <button class="logout-btn" bindtap="onLogout">退出登录</button>
+  <text class="version">{{versionText}}</text>
+</view>

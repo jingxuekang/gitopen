@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "error-tip": "/components/error-tip/error-tip",
+    "skeleton": "/components/skeleton/skeleton",
+    "product-card": "/components/product-card/product-card",
+    "custom-tabbar": "/components/custom-tabbar/custom-tabbar",
+    "nav-header": "/components/nav-header/nav-header"
+  }
+}

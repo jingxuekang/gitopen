@@ -1,0 +1,140 @@
+/* 骨架屏基础样式 */
+.skeleton {
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton-line {
+  height: 32rpx;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* 商品卡片骨架屏 */
+.skeleton-product-card {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 340rpx;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-content {
+  padding: 20rpx;
+}
+
+.skeleton-title {
+  width: 80%;
+}
+
+.skeleton-price {
+  width: 40%;
+}
+
+.skeleton-sales {
+  width: 30%;
+}
+
+/* 商品详情骨架屏 */
+.skeleton-swiper {
+  width: 100%;
+  height: 750rpx;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-info {
+  padding: 30rpx;
+  background: #fff;
+  margin-top: 20rpx;
+  border-radius: 16rpx;
+}
+
+.skeleton-price-large {
+  width: 50%;
+  height: 48rpx;
+}
+
+.skeleton-title-large {
+  width: 90%;
+  height: 40rpx;
+}
+
+.skeleton-meta {
+  width: 60%;
+}
+
+/* 订单卡片骨架屏 */
+.skeleton-order-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.skeleton-header {
+  margin-bottom: 20rpx;
+}
+
+.skeleton-order-no {
+  width: 60%;
+}
+
+.skeleton-body {
+  display: flex;
+  align-items: center;
+}
+
+.skeleton-image-small {
+  width: 160rpx;
+  height: 160rpx;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+/* 列表骨架屏 */
+.skeleton-list-item {
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.skeleton-subtitle {
+  width: 50%;
+}

@@ -1,0 +1,21 @@
+<!-- pages/trace/source/source.wxml -->
+<view class="trace-page">
+  <view class="trace-top">
+    <view class="trace-top-left">
+      <image class="trace-brand-logo" src="/images/brand-logo.png" mode="aspectFit" />
+      <view class="trace-brand-text">
+        <view class="trace-title">产品溯源</view>
+        <view class="trace-subtitle">
+          {{type === 'tea' ? '茶叶' : type === 'chenpi' ? '陈皮' : '紫砂'}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="trace-card">
+    <view class="trace-card-title">溯源信息</view>
+    <view class="trace-card-text">这里是二级溯源页面（后续可接入图文、报告、时间线）。</view>
+    <view class="trace-card-text" wx:if="{{productId}}">商品ID：{{productId}}</view>
+  </view>
+</view>
+

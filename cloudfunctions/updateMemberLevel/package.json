@@ -1,0 +1,9 @@
+{
+  "name": "updateMemberLevel",
+  "version": "1.0.0",
+  "description": "检查并更新会员等级",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

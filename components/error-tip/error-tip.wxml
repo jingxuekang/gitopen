@@ -1,0 +1,8 @@
+<!--components/error-tip/error-tip.wxml-->
+<view class="error-tip" wx:if="{{show}}">
+  <view class="error-content">
+    <image class="error-icon" src="/images/icons/image-error.png" mode="aspectFit" wx:if="{{showIcon}}"></image>
+    <text class="error-message">{{message}}</text>
+    <button class="retry-btn" wx:if="{{showRetry}}" bindtap="onRetry">重试</button>
+  </view>
+</view>

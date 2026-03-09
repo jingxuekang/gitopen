@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "在线客服",
+  "navigationBarBackgroundColor": "#F7F4F0",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}

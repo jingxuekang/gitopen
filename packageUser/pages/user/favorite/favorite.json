@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "product-card": "/components/product-card/product-card",
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}

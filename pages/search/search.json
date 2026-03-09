@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "backgroundColor": "#F5F5F5",
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "product-card": "/components/product-card/product-card",
+    "nav-header": "/components/nav-header/nav-header"
+  }
+}

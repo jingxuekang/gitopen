@@ -1,0 +1,431 @@
+/* pages/group/detail/detail.wxss */
+.group-detail-page {
+  min-height: 100vh;
+  background-color: #F7F4F0;
+  padding-bottom: 120rpx;
+}
+
+/* 加载状态 */
+.loading-container {
+  padding: 200rpx 0;
+  text-align: center;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 商品轮播图 */
+.product-swiper {
+  width: 100%;
+  height: 750rpx;
+  background: white;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 拼团状态卡片 */
+.group-status-card {
+  background: white;
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 拼团成功 */
+.status-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.status-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+
+.status-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #5B3A29;
+}
+
+/* 拼团失败 */
+.status-failed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.status-failed .status-text {
+  color: #FF6B6B;
+}
+
+/* 拼团进行中 */
+.status-ongoing {
+  padding: 20rpx 0;
+}
+
+.countdown-box {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.countdown-value {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FF6B6B;
+}
+
+.progress-box {
+  margin-bottom: 30rpx;
+}
+
+.progress-text {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.progress-bar {
+  height: 16rpx;
+  background: #F0F0F0;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5B3A29 0%, #7A5233 100%);
+  border-radius: 8rpx;
+  transition: width 0.3s;
+}
+
+.progress-count {
+  display: block;
+  font-size: 24rpx;
+  color: #5B3A29;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 成员列表 */
+.members-section {
+  border-top: 1rpx solid #F0F0F0;
+  padding-top: 30rpx;
+}
+
+.members-title {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.member-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120rpx;
+}
+
+.member-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  border: 3rpx solid #5B3A29;
+}
+
+.member-name {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.leader-tag {
+  background: #D4AF37;
+  color: white;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  margin-top: 6rpx;
+}
+
+.member-item.empty {
+  opacity: 0.5;
+}
+
+.empty-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #F5F5F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10rpx;
+  border: 3rpx dashed #DDD;
+}
+
+.empty-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.empty-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 商品信息卡片 */
+.product-info-card {
+  background: white;
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.price-section {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.group-price-box {
+  flex: 1;
+}
+
+.price-label {
+  display: block;
+  font-size: 24rpx;
+  color: #FF6B6B;
+  margin-bottom: 8rpx;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-symbol {
+  font-size: 32rpx;
+  color: #FF6B6B;
+  font-weight: bold;
+}
+
+.price-value {
+  font-size: 56rpx;
+  color: #FF6B6B;
+  font-weight: bold;
+  margin-left: 4rpx;
+}
+
+.original-price-box {
+  text-align: right;
+}
+
+.original-label {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.original-price {
+  font-size: 28rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.product-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.product-tags {
+  display: flex;
+  gap: 15rpx;
+}
+
+.tag {
+  background: #F5F5F5;
+  color: #666;
+  font-size: 24rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+}
+
+/* 商品详情卡片 */
+.product-detail-card {
+  background: white;
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.detail-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.view-product-btn {
+  font-size: 24rpx;
+  color: #5B3A29;
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.detail-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* 拼团规则卡片 */
+.rules-card {
+  background: white;
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.rules-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.rule-number {
+  width: 40rpx;
+  height: 40rpx;
+  background: #5B3A29;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  margin-right: 15rpx;
+  flex-shrink: 0;
+}
+
+.rule-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-buttons button {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #5B3A29 0%, #7A5233 100%);
+  color: white;
+}
+
+.btn-secondary {
+  background: white;
+  color: #5B3A29;
+  border: 2rpx solid #5B3A29 !important;
+}
+
+.btn-share {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  color: white;
+}
+
+.btn-disabled {
+  background: #F0F0F0;
+  color: #999;
+}

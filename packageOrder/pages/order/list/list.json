@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "order-item": "/components/order-item/order-item",
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}

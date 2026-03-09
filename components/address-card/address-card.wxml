@@ -1,0 +1,24 @@
+<view class="address-card {{selected ? 'is-selected' : ''}}" bindtap="onTap">
+  <view class="address-top">
+    <view class="receiver">
+      <text class="name">{{address.name || address.receiver || '收货人'}}</text>
+      <text class="phone">{{address.phone || address.mobile || ''}}</text>
+    </view>
+    <view wx:if="{{address.isDefault}}" class="default-tag">默认</view>
+  </view>
+
+  <view class="address-detail">
+    <text>{{address.province || ''}}{{address.city || ''}}{{address.district || ''}}{{address.detail || address.address || ''}}</text>
+  </view>
+
+  <view wx:if="{{mode === 'manage'}}" class="address-actions">
+    <text wx:if="{{!address.isDefault}}" class="action" catchtap="onSetDefault">设为默认</text>
+    <text class="action" catchtap="onEdit">编辑</text>
+    <text class="action danger" catchtap="onDelete">删除</text>
+  </view>
+
+  <view wx:if="{{mode === 'select'}}" class="select-actions">
+    <text class="select-icon">›</text>
+    <text class="select-edit" catchtap="onEdit">编辑</text>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="product-card layout-{{layout}}" bindtap="onTap">
+  <view class="product-image-wrap">
+    <image
+      class="product-image"
+      src="{{(product.images && product.images[0]) || product.image || '/images/empty/product.png'}}"
+      mode="aspectFill"
+      lazy-load="{{true}}"
+    />
+    <view wx:if="{{product.groupPrice || product.isGroup}}" class="group-tag">拼团</view>
+  </view>
+
+  <view class="product-info">
+    <text class="product-name">{{product.name || '商品名称'}}</text>
+
+    <view class="product-meta">
+      <text class="meta-text">已售 {{product.sales || 0}}</text>
+      <text class="meta-text">评分 {{product.rating || '4.8'}}</text>
+    </view>
+
+    <view class="price-row">
+      <text class="price-symbol">¥</text>
+      <text class="price-value">{{product.priceText || product.displayPrice || product.priceDisplay || product.price || '0.00'}}</text>
+      <text wx:if="{{showMemberPrice && (product.memberPrice || product.displayMemberPrice)}}" class="member-price">
+        会员价 ¥{{product.memberPrice || product.displayMemberPrice}}
+      </text>
+    </view>
+  </view>
+
+  <view wx:if="{{showCart}}" class="cart-btn" catchtap="onAddCart">加入购物车</view>
+</view>

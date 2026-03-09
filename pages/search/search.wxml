@@ -1,0 +1,85 @@
+<!--pages/search/search.wxml-->
+<view class="search-page">
+  <nav-header title="搜索商品" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <image class="search-icon" src="/images/icons/search.png"></image>
+      <input 
+        class="search-input" 
+        type="text" 
+        placeholder="搜索商品" 
+        value="{{keyword}}"
+        bind:input="onInput"
+        bind:confirm="onSearch"
+        focus
+      />
+    </view>
+    <text class="search-btn" bind:tap="onSearch">搜索</text>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view wx:if="{{searched}}" class="search-results">
+    <view wx:if="{{searchResults.length > 0}}" class="product-list">
+      <product-card
+        wx:for="{{searchResults}}"
+        wx:key="_id"
+        product="{{item}}"
+        bind:tap="goToProduct"
+      />
+    </view>
+
+    <!-- 无结果 -->
+    <view wx:else class="empty-state">
+      <image src="/images/empty/search.png"></image>
+      <text>未找到相关商品</text>
+      <text class="empty-tip">换个关键词试试吧</text>
+    </view>
+  </view>
+
+  <!-- 搜索建议 -->
+  <view wx:else class="search-suggestions">
+    <!-- 搜索历史 -->
+    <view wx:if="{{searchHistory.length > 0}}" class="suggestion-section">
+      <view class="section-header">
+        <text class="section-title">搜索历史</text>
+        <text class="clear-btn" bind:tap="clearHistory">清空</text>
+      </view>
+      <view class="keyword-list">
+        <view 
+          class="keyword-item" 
+          wx:for="{{searchHistory}}" 
+          wx:key="index"
+          bind:tap="onKeywordTap"
+          data-keyword="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 热门搜索 -->
+    <view class="suggestion-section">
+      <view class="section-header">
+        <text class="section-title">热门搜索</text>
+      </view>
+      <view class="keyword-list">
+        <view 
+          class="keyword-item hot" 
+          wx:for="{{hotKeywords}}" 
+          wx:key="index"
+          bind:tap="onKeywordTap"
+          data-keyword="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{searching}}" class="loading">
+    <skeleton type="product-card" wx:for="{{[1,2,3]}}" wx:key="index"></skeleton>
+  </view>
+</view>

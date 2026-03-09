@@ -1,0 +1,68 @@
+/* components/nav-header/nav-header.wxss */
+.nav-header {
+  background: linear-gradient(135deg, #8B6914 0%, #A67C1A 50%, #8B6914 100%);
+  box-shadow: 0 4rpx 20rpx rgba(139, 105, 20, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.nav-content {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  position: relative;
+}
+
+.nav-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.back-arrow {
+  width: 20rpx;
+  height: 20rpx;
+  border-left: 4rpx solid #FFF8E8;
+  border-bottom: 4rpx solid #FFF8E8;
+  transform: rotate(45deg);
+  margin-left: 8rpx;
+}
+
+/* Logo + 标题居中组合 */
+.nav-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-logo {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 8rpx;
+}
+
+/* 标题字体与首页"报告茶友"一致 */
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FFF8E8;
+  letter-spacing: 2rpx;
+  white-space: nowrap;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}

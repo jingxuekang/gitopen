@@ -1,0 +1,39 @@
+<!-- 地址列表页面 -->
+<view class="container">
+  <nav-header title="收货地址" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <skeleton type="list" count="3"></skeleton>
+  </view>
+
+  <!-- 地址列表 -->
+  <view wx:elif="{{addresses.length > 0}}" class="address-list">
+    <address-card
+      wx:for="{{addresses}}"
+      wx:key="_id"
+      address="{{item}}"
+      mode="{{mode}}"
+      selected="{{selectedAddressId === item._id}}"
+      bind:select="onSelectAddress"
+      bind:tap="onSelectAddress"
+      bind:edit="onEditAddress"
+      bind:delete="onDeleteAddress"
+      bind:setdefault="onSetDefault"
+    />
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty">
+    <image class="empty-icon" src="/images/empty/address.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无收货地址</text>
+    <button class="add-button" bindtap="onAddAddress">添加地址</button>
+  </view>
+</view>
+
+<!-- 底部添加按钮 -->
+<view wx:if="{{addresses.length > 0}}" class="bottom-bar">
+  <button class="add-address-button" bindtap="onAddAddress">
+    + 添加新地址
+  </button>
+</view>

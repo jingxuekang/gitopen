@@ -1,0 +1,279 @@
+<!--pages/product/product.wxml-->
+<view class="product-page" wx:if="{{!loading}}">
+  <!-- 顶部导航 -->
+  <view class="top-nav">
+    <view class="nav-left">
+      <view class="nav-btn nav-btn-back" bindtap="navigateBack">
+        <view class="nav-icon-back"></view>
+      </view>
+    </view>
+    <view class="nav-center">
+      <image class="nav-logo" src="/images/brand-logo.png" mode="aspectFit"></image>
+      <text class="nav-title">商品详情</text>
+    </view>
+    <view class="nav-right">
+      <view class="nav-btn nav-btn-share" bindtap="openShareSheet">
+        <view class="nav-icon-share">
+          <view class="share-tray"></view>
+          <view class="share-arrow"></view>
+          <view class="share-arrow-head"></view>
+        </view>
+      </view>
+      <view class="nav-btn nav-btn-cart" bindtap="goToCartPage">
+        <view class="nav-icon-cart">
+          <view class="cart-bag"></view>
+          <view class="cart-handle"></view>
+          <view class="cart-dot"></view>
+        </view>
+        <text wx:if="{{cartCount > 0}}" class="nav-badge">{{cartCount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="product-main">
+    <!-- 主图 -->
+    <view class="media-card">
+      <swiper
+        class="media-swiper"
+        current="{{currentImageIndex}}"
+        bindchange="onImageChange"
+        indicator-dots="{{product.images.length > 1}}"
+        indicator-color="rgba(255,255,255,0.56)"
+        indicator-active-color="#FFFFFF"
+        autoplay="{{product.images.length > 1}}"
+        interval="3600"
+        duration="420"
+        circular="{{product.images.length > 1}}"
+      >
+        <swiper-item wx:for="{{product.images}}" wx:key="*this">
+          <image class="media-image" src="{{item}}" mode="aspectFill"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- 价格与购买信息 -->
+    <view class="summary-card">
+      <text class="summary-title">{{product.name}}</text>
+      <view class="price-section">
+        <view class="price-main">
+          <text class="price-symbol">¥</text>
+          <text class="price-integer">{{displayPrice}}</text>
+          <text class="price-unit">/件</text>
+        </view>
+        <view class="price-original">
+          <text class="original-price">¥{{displayOriginalPrice}}</text>
+        </view>
+        <view class="price-tag">
+          <text class="tag">包邮</text>
+        </view>
+      </view>
+
+      <view class="sales-info">
+        <text>销量 {{product.sales}}</text>
+        <text>库存 {{selectedSku ? selectedSku.stock : product.stock}}</text>
+        <text>评分 {{product.rating || 5.0}}</text>
+      </view>
+
+      <view wx:if="{{stockStatus}}" class="stock-status-bar {{stockStatus.status}}">
+        <text wx:if="{{stockStatus.status === 'out_of_stock'}}" class="status-text">{{stockStatusText}} - 暂时无法购买</text>
+        <text wx:elif="{{stockStatus.status === 'low_stock'}}" class="status-text">{{stockStatusText}} - 仅剩{{stockStatus.stock}}件</text>
+      </view>
+
+      <view wx:if="{{product.skus && product.skus.length > 0}}" class="spec-info-bar">
+        <view class="spec-info-header" bindtap="toggleSpecInfo">
+          <text class="spec-label">规格</text>
+          <text class="spec-value">{{selectedSkuLabel || '请选择'}}</text>
+          <text class="spec-arrow {{showSpecInfo ? 'spec-arrow-up' : ''}}">›</text>
+        </view>
+        <view wx:if="{{showSpecInfo}}" class="spec-info-detail">
+          <view class="spec-info-group" wx:for="{{specGroups}}" wx:key="index">
+            <text class="spec-info-group-label">{{item.label}}</text>
+            <view class="spec-info-tags">
+              <text
+                class="spec-info-tag {{selectedSpecValues[item.index] === option.rawValue ? 'active' : ''}}"
+                wx:for="{{item.options}}"
+                wx:for-item="option"
+                wx:key="rawValue"
+              >{{option.value}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 产品溯源入口（按钮一行） -->
+      <view class="trace-entry-row">
+        <button class="trace-entry-btn" bindtap="goToProductTrace">产品溯源</button>
+      </view>
+    </view>
+
+    <!-- 淘宝风格详情说明 -->
+    <view class="taobao-detail-card">
+      <view class="taobao-detail-top">
+        <view class="taobao-detail-copy">
+          <text class="taobao-detail-name">{{detailTitle || product.name}}</text>
+          <view class="taobao-meta-grid">
+            <view class="taobao-meta-item" wx:for="{{detailMeta}}" wx:key="label">
+              <text class="taobao-meta-label">【{{item.label}}】</text>
+              <text class="taobao-meta-value">{{item.value}}</text>
+            </view>
+          </view>
+          <text class="taobao-detail-desc">{{detailDescription}}</text>
+        </view>
+        <view class="taobao-pack-card">
+          <image class="taobao-pack-image" src="{{product.images[0]}}" mode="aspectFill"></image>
+          <view class="taobao-pack-badge">净含量 {{detailWeight}}</view>
+        </view>
+      </view>
+      <view class="taobao-gallery">
+        <view class="taobao-gallery-item">
+          <image class="taobao-gallery-image" src="{{product.images[0] || product.image}}" mode="aspectFill"></image>
+        </view>
+        <view class="taobao-gallery-item">
+          <image class="taobao-gallery-image" src="{{product.images[1] || product.images[0] || product.image}}" mode="aspectFill"></image>
+        </view>
+        <view class="taobao-gallery-item">
+          <image class="taobao-gallery-image" src="{{product.images[2] || product.images[1] || product.images[0] || product.image}}" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="detail-note-card">
+      <view class="detail-note-title">详情说明</view>
+      <text class="detail-note-text">{{product.description || detailDescription}}</text>
+    </view>
+
+    <view class="brew-card">
+      <view class="brew-title">冲泡建议</view>
+      <text class="brew-text">{{brewAdvice}}</text>
+    </view>
+
+    <view class="clay-card">
+      <view class="clay-head">
+        <view class="clay-text">
+          <view class="clay-title">紫砂泥料适配度</view>
+          <text class="clay-value">{{claySuitability}}</text>
+        </view>
+        <image class="clay-image" src="/images/category/teapot.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bar-left">
+      <view class="bar-item" bindtap="goHomePage">
+        <view class="bar-icon-shell icon-home">
+          <view class="icon-home-roof"></view>
+          <view class="icon-home-body"></view>
+          <view class="icon-home-door"></view>
+        </view>
+        <text>首页</text>
+      </view>
+      <view class="bar-item bar-item-service" bindtap="contactService">
+        <view class="bar-icon-shell icon-service">
+          <view class="icon-chat-bubble"></view>
+          <view class="icon-chat-tail"></view>
+        </view>
+        <text>客服</text>
+      </view>
+      <view class="bar-item" bindtap="toggleFavorite">
+        <view class="bar-icon-shell icon-favorite {{isFavorite ? 'is-active' : ''}}">
+          <view class="icon-bookmark-body"></view>
+          <view class="icon-bookmark-notch"></view>
+        </view>
+        <text>{{isFavorite ? '已收藏' : '收藏'}}</text>
+      </view>
+    </view>
+    <view class="bar-right">
+      <button class="btn-cart" bindtap="addToCart">加入购物车</button>
+      <button class="btn-buy" bindtap="buyNow">{{stockStatus.inStock ? '立即购买' : '已售罄'}}</button>
+    </view>
+  </view>
+
+  <!-- 规格选择弹窗 -->
+  <view wx:if="{{showSpecSelector}}" class="spec-modal modal-animate-in" catchtap="hideSpecSelector">
+    <view class="modal-content taobao-spec-panel panel-slide-up" catchtap="noop">
+      <view class="modal-header spec-head">
+        <view class="spec-summary">
+          <image class="spec-thumb" src="{{product.images[0]}}" mode="aspectFill"></image>
+          <view class="spec-summary-text">
+            <text class="spec-modal-price">¥{{modalPrice}}</text>
+            <text class="spec-modal-stock">库存{{modalStock}}件</text>
+            <text class="spec-modal-selected">已选 {{selectedSkuLabel || '请选择规格'}}</text>
+          </view>
+        </view>
+        <text class="close-icon" bindtap="hideSpecSelector">✕</text>
+      </view>
+
+      <scroll-view class="sku-list" scroll-y="true" enhanced="true">
+        <view class="spec-group" wx:for="{{specGroups}}" wx:key="index">
+          <text class="spec-group-title">{{item.label}}</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpecValues[item.index] === option.rawValue ? 'active' : ''}} {{option.disabled ? 'disabled' : ''}}"
+              wx:for="{{item.options}}"
+              wx:for-item="option"
+              wx:for-index="optionIndex"
+              wx:key="rawValue"
+              data-group-index="{{item.index}}"
+              data-value="{{option.rawValue}}"
+              data-disabled="{{option.disabled ? '1' : ''}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text>{{option.value}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="qty-row">
+          <text class="spec-group-title">数量</text>
+          <view class="qty-stepper">
+            <view class="qty-btn" bindtap="decreaseBuyQuantity">-</view>
+            <input
+              class="qty-input"
+              type="number"
+              value="{{buyQuantity}}"
+              bindblur="onBuyQuantityBlur"
+              bindconfirm="onBuyQuantityBlur"
+            />
+            <view class="qty-btn" bindtap="increaseBuyQuantity">+</view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="spec-action-bar">
+        <button class="spec-action-btn add" bindtap="confirmAddToCart">加入购物车</button>
+        <button class="spec-action-btn buy" bindtap="confirmBuyNow">立即购买</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享弹窗 -->
+  <view wx:if="{{showShareSheet}}" class="share-sheet modal-animate-in" catchtap="hideShareSheet">
+    <view class="share-panel panel-slide-up" catchtap="noop">
+      <view class="share-title">分享商品</view>
+      <view class="share-link-box">
+        <text class="share-link">{{sharePath}}</text>
+      </view>
+      <view class="share-actions">
+        <button class="share-action-btn primary" open-type="share" bindtap="hideShareSheet">微信好友</button>
+        <button class="share-action-btn" bind:tap="copyShareLink">复制链接</button>
+      </view>
+      <button class="share-cancel-btn" bindtap="hideShareSheet">取消</button>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{loading}}" class="product-skeleton">
+  <view class="sk-image skeleton-block"></view>
+  <view class="sk-body">
+    <view class="sk-title skeleton-block"></view>
+    <view class="sk-price-row">
+      <view class="sk-price skeleton-block"></view>
+      <view class="sk-tag skeleton-block"></view>
+    </view>
+    <view class="sk-info skeleton-block"></view>
+    <view class="sk-spec skeleton-block"></view>
+    <view class="sk-detail skeleton-block"></view>
+  </view>
+</view>

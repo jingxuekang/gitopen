@@ -1,0 +1,172 @@
+<!--pages/index/index.wxml-->
+<view class="index-page">
+  <!-- 搜索栏 -->
+  <view class="search-bar safe-area-top" bind:tap="goToSearch">
+    <text class="search-icon">🔍</text>
+    <text class="search-placeholder">搜索茶叶、陈皮、紫砂壶</text>
+  </view>
+
+  <!-- 骨架屏 -->
+  <view wx:if="{{loading && !banners.length}}">
+    <view class="skeleton-banner"></view>
+    <view class="skeleton-categories">
+      <view class="skeleton-category-item" wx:for="{{[1,2,3]}}" wx:key="index"></view>
+    </view>
+    <skeleton type="product-card" wx:for="{{[1,2,3,4]}}" wx:key="index"></skeleton>
+  </view>
+
+  <!-- 内容区域 -->
+  <view wx:else>
+    <!-- 轮播图 -->
+    <swiper class="banner-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#5B3A29" autoplay circular>
+      <swiper-item wx:for="{{banners}}" wx:key="_id">
+        <image class="banner-image" src="{{item.image}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+
+    <!-- 分类入口 -->
+    <view class="category-grid">
+      <view class="category-item tap-active" wx:for="{{categories}}" wx:key="id" bind:tap="goToCategory" data-category="{{item.id}}">
+        <lazy-image 
+          src="{{item.icon}}" 
+          width="120rpx"
+          height="120rpx"
+          imageClass="category-icon"
+        ></lazy-image>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 排行榜 -->
+    <view class="section ranking-section">
+      <view class="section-header">
+        <text class="section-title">排行榜</text>
+      </view>
+      
+      <!-- 排行榜Tab -->
+      <view class="rank-tabs">
+        <view 
+          class="rank-tab {{currentRankTab === item.id ? 'active' : ''}}"
+          wx:for="{{rankTabs}}"
+          wx:key="id"
+          bind:tap="switchRankTab"
+          data-tab="{{item.id}}"
+        >
+          {{item.name}}
+        </view>
+      </view>
+
+      <!-- 排行榜列表 -->
+      <view class="ranking-list">
+        <view 
+          class="ranking-item tap-active" 
+          wx:for="{{rankingList}}" 
+          wx:for-index="index"
+          wx:key="_id" 
+          bind:tap="goToProduct" 
+          data-id="{{item._id}}"
+        >
+          <view class="rank-number {{index < 3 ? 'top-three' : ''}}">
+            {{getRankIcon(index)}}
+          </view>
+          <lazy-image 
+            src="{{item.images[0]}}" 
+            mode="aspectFill"
+            width="120rpx"
+            height="120rpx"
+            imageClass="ranking-image"
+          ></lazy-image>
+          <view class="ranking-info">
+            <text class="ranking-name">{{item.name}}</text>
+            <view class="ranking-meta">
+              <view class="ranking-price">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">{{formatPrice(item.price)}}</text>
+              </view>
+              <view class="ranking-stats">
+                <text wx:if="{{currentRankTab === 'sales'}}">销量 {{item.sales}}</text>
+                <text wx:if="{{currentRankTab === 'rating'}}">评分 {{item.rating}}</text>
+                <text wx:if="{{currentRankTab === 'price'}}">超值</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 拼团专区 -->
+    <view wx:if="{{groupActivities.length > 0}}" class="section">
+      <view class="section-header">
+        <text class="section-title">拼团专区</text>
+        <view class="section-more tap-active" bind:tap="goToGroupList">
+          <text>更多</text>
+          <text class="arrow-text">›</text>
+        </view>
+      </view>
+      <scroll-view class="group-scroll" scroll-x enable-flex>
+        <view class="group-item tap-active" wx:for="{{groupActivities}}" wx:key="_id" bind:tap="goToGroup" data-id="{{item._id}}">
+          <lazy-image 
+            src="{{item.product.images[0]}}" 
+            mode="aspectFill"
+            width="100%"
+            height="280rpx"
+            imageClass="group-image"
+          ></lazy-image>
+          <view class="group-info">
+            <text class="group-name">{{item.product.name}}</text>
+            <view class="group-price">
+              <text class="price-label">拼团价</text>
+              <text class="price">¥{{formatPrice(item.groupPrice)}}</text>
+              <text class="original-price">¥{{formatPrice(item.originalPrice)}}</text>
+            </view>
+            <view class="group-tag">{{item.requiredCount}}人团</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 新品推荐 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">新品推荐</text>
+      </view>
+      <view class="product-grid">
+        <view class="product-item tap-active" wx:for="{{newProducts}}" wx:key="_id" bind:tap="goToProduct" data-id="{{item._id}}">
+          <lazy-image 
+            src="{{item.images[0]}}" 
+            mode="aspectFill"
+            width="100%"
+            height="340rpx"
+            imageClass="product-image"
+          ></lazy-image>
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <view class="product-footer">
+              <view class="product-price">
+                <view wx:if="{{memberLevel > 0}}" class="member-price-wrapper">
+                  <view class="member-price">
+                    <text class="member-tag">会员</text>
+                    <text class="price-symbol">¥</text>
+                    <text class="price-integer">{{getMemberPrice(item.price)}}</text>
+                  </view>
+                  <text class="original-price">¥{{formatPrice(item.price)}}</text>
+                </view>
+                <view wx:else>
+                  <text class="price-symbol">¥</text>
+                  <text class="price-integer">{{formatPrice(item.price)}}</text>
+                </view>
+              </view>
+              <view class="new-tag">新品</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部安全区域 -->
+  <view class="safe-area-bottom"></view>
+  
+  <!-- 底部导航栏 -->
+  <custom-tabbar current="0" />
+</view>

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "报告茶友",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#F5F5F5",
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "lazy-image": "/components/lazy-image/lazy-image",
+    "custom-tabbar": "/components/custom-tabbar/custom-tabbar"
+  }
+}

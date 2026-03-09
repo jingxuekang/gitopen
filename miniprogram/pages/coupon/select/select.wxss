@@ -1,0 +1,156 @@
+.container {
+  min-height: 100vh;
+  background-color: #F7F4F0;
+  padding-bottom: 120rpx;
+}
+
+.loading,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 200rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.coupons-list {
+  padding: 20rpx;
+}
+
+.coupon-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+  position: relative;
+  border: 2rpx solid transparent;
+}
+
+.coupon-item.selected {
+  border-color: #5B3A29;
+}
+
+.coupon-item.disabled {
+  opacity: 0.5;
+}
+
+.coupon-content {
+  flex: 1;
+}
+
+.no-coupon-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.coupon-left {
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20rpx;
+  border-right: 2rpx dashed #ddd;
+}
+
+.coupon-value {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10rpx;
+  color: #ff4444;
+}
+
+.symbol {
+  font-size: 28rpx;
+}
+
+.amount {
+  font-size: 56rpx;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.unit {
+  font-size: 28rpx;
+  margin-left: 5rpx;
+}
+
+.coupon-condition {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.coupon-right {
+  flex: 1;
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.coupon-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.coupon-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.unavailable-reason {
+  font-size: 24rpx;
+  color: #ff4444;
+}
+
+.check-icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #fff;
+  margin-left: 20rpx;
+}
+
+.coupon-item.selected .check-icon {
+  background-color: #5B3A29;
+  border-color: #5B3A29;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  background-color: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.confirm-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  border: none;
+}

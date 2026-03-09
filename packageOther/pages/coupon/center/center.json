@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "领券中心",
+  "navigationBarBackgroundColor": "#8B6914",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F8F4EC",
+  "usingComponents": {
+    "coupon-card": "/components/coupon-card/coupon-card",
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "拼团活动",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 50,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav-header": "/components/nav-header/nav-header"
+  }
+}

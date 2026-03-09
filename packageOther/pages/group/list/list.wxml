@@ -1,0 +1,72 @@
+<!--pages/group/list/list.wxml-->
+<view class="group-list-page">
+  <nav-header title="拼团活动" showBack="{{true}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">拼团活动</text>
+    <text class="page-subtitle">邀请好友一起拼，享受超值优惠</text>
+  </view>
+
+  <!-- 拼团活动列表 -->
+  <view class="activity-list">
+    <view class="activity-item" wx:for="{{activities}}" wx:key="_id" bind:tap="onViewActivity" data-id="{{_id}}">
+      <view class="activity-card">
+        <!-- 商品图片 -->
+        <image class="product-image" src="{{item.productInfo.images[0]}}" mode="aspectFill"></image>
+        
+        <!-- 商品信息 -->
+        <view class="product-info">
+          <text class="product-name">{{item.productInfo.name}}</text>
+          
+          <!-- 价格信息 -->
+          <view class="price-section">
+            <view class="group-price-box">
+              <text class="price-label">拼团价</text>
+              <view class="price-row">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">{{item.groupPrice / 100}}</text>
+              </view>
+            </view>
+            <view class="original-price-box">
+              <text class="original-price">¥{{item.originalPrice / 100}}</text>
+            </view>
+          </view>
+          
+          <!-- 拼团信息 -->
+          <view class="group-info">
+            <view class="group-tag">
+              <text>{{item.requiredCount}}人团</text>
+            </view>
+            <view class="stock-info">
+              <text>剩余{{item.stock}}件</text>
+            </view>
+          </view>
+          
+          <!-- 操作按钮 -->
+          <view class="action-buttons">
+            <button class="btn-primary" catch:tap="onViewActivity" data-id="{{item._id}}">立即拼团</button>
+            <button class="btn-secondary" catch:tap="onViewProduct" data-id="{{item.productId}}">查看商品</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:if="{{!loading && activities.length === 0}}" class="empty-container">
+    <image class="empty-icon" src="/images/empty/no-group.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无拼团活动</text>
+    <text class="empty-hint">敬请期待更多优惠活动</text>
+  </view>
+
+  <!-- 没有更多 -->
+  <view wx:if="{{!loading && !hasMore && activities.length > 0}}" class="no-more">
+    <text>没有更多了</text>
+  </view>
+</view>

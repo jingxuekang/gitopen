@@ -1,0 +1,9 @@
+{
+  "name": "checkExpiredOrders",
+  "version": "1.0.0",
+  "description": "定时检查超时未支付订单并自动取消",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

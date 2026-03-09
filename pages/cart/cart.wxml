@@ -1,0 +1,123 @@
+<view class="cart-container">
+  <nav-header title="购物车" showBack="{{false}}"></nav-header>
+  <view class="nav-placeholder"></view>
+  <!-- 空购物车状态 -->
+  <view wx:if="{{!loading && items.length === 0}}" class="empty-cart">
+    <view class="empty-illustration">
+      <view class="empty-cup">
+        <view class="cup-body"></view>
+        <view class="cup-handle"></view>
+        <view class="cup-saucer"></view>
+        <view class="cup-steam s1"></view>
+        <view class="cup-steam s2"></view>
+        <view class="cup-steam s3"></view>
+      </view>
+    </view>
+    <text class="empty-title">还没有心仪的茶品</text>
+    <text class="empty-hint">去发现好茶，开启品茗之旅</text>
+    <button class="go-shopping-btn" bindtap="goShopping">去逛逛</button>
+  </view>
+
+  <!-- 骨架屏 -->
+  <view wx:elif="{{loading}}" class="skeleton-wrap">
+    <view class="skeleton-item" wx:for="{{[1,2,3]}}" wx:key="*this">
+      <view class="skeleton-check skeleton-block"></view>
+      <view class="skeleton-img skeleton-block"></view>
+      <view class="skeleton-info">
+        <view class="skeleton-line skeleton-block" style="width:70%"></view>
+        <view class="skeleton-line skeleton-block" style="width:40%"></view>
+        <view class="skeleton-line-row">
+          <view class="skeleton-line skeleton-block" style="width:30%"></view>
+          <view class="skeleton-line skeleton-block" style="width:25%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车商品列表 -->
+  <view wx:else class="cart-content">
+    <view class="cart-list">
+      <view
+        wx:for="{{items}}"
+        wx:key="_id"
+        class="cart-item {{item.available ? '' : 'unavailable'}}"
+      >
+        <view class="item-checkbox" bindtap="toggleSelect" data-id="{{item._id}}">
+          <view class="checkbox-icon {{item.selected ? 'checked' : ''}}">
+            <view wx:if="{{item.selected}}" class="check-mark"></view>
+          </view>
+        </view>
+
+        <view class="item-content">
+          <image class="item-image" src="{{item.productImage}}" mode="aspectFill"></image>
+          <view class="item-info">
+            <text class="item-name">{{item.productName}}</text>
+            <text class="item-spec">{{item.specText}}</text>
+            <view wx:if="{{!item.available}}" class="stock-warning">
+              <text class="warning-text">库存不足</text>
+            </view>
+            <view class="item-bottom">
+              <text class="item-price">¥{{item.price / 100}}</text>
+              <view class="quantity-control">
+                <view
+                  class="qty-btn {{item.quantity <= 1 ? 'disabled' : ''}}"
+                  bindtap="decreaseQuantity"
+                  data-id="{{item._id}}"
+                  data-quantity="{{item.quantity}}"
+                >-</view>
+                <input
+                  class="qty-input"
+                  type="number"
+                  value="{{item.quantity}}"
+                  data-id="{{item._id}}"
+                  data-stock="{{item.stock}}"
+                  data-quantity="{{item.quantity}}"
+                  bindblur="onQuantityBlur"
+                  bindconfirm="onQuantityBlur"
+                />
+                <view
+                  class="qty-btn {{item.quantity >= item.stock ? 'disabled' : ''}}"
+                  bindtap="increaseQuantity"
+                  data-id="{{item._id}}"
+                  data-quantity="{{item.quantity}}"
+                  data-stock="{{item.stock}}"
+                >+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="item-delete-btn" bindtap="deleteItem" data-id="{{item._id}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="cart-footer">
+      <view class="footer-left">
+        <view class="select-all" bindtap="toggleSelectAll">
+          <view class="checkbox-icon {{allSelected ? 'checked' : ''}}">
+            <view wx:if="{{allSelected}}" class="check-mark"></view>
+          </view>
+          <text class="select-all-text">全选</text>
+        </view>
+        <view class="batch-delete" bindtap="batchDelete">
+          <text>删除</text>
+        </view>
+      </view>
+      <view class="footer-right">
+        <view class="total-info">
+          <text class="total-label">合计：</text>
+          <text class="total-price">¥{{totalPrice / 100}}</text>
+        </view>
+        <button
+          class="checkout-btn {{selectedCount === 0 || hasUnavailable ? 'disabled' : ''}}"
+          bindtap="checkout"
+        >结算({{selectedCount}})</button>
+      </view>
+    </view>
+  </view>
+
+  <custom-tabbar current="2" />
+</view>

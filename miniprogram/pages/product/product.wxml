@@ -1,0 +1,142 @@
+<!--pages/product/product.wxml-->
+<view class="product-page" wx:if="{{!loading}}">
+  <!-- 顶部导航栏 -->
+  <view class="top-nav">
+    <view class="nav-left">
+      <text class="back-btn" bind:tap="navigateBack">←</text>
+    </view>
+    <view class="nav-center">
+      <view class="search-bar">
+        <text class="search-icon">🔍</text>
+        <text class="search-placeholder">搜索</text>
+      </view>
+    </view>
+    <view class="nav-right">
+      <text class="share-btn">📤</text>
+      <text class="cart-btn">🛒{{cartCount || ''}}</text>
+    </view>
+  </view>
+
+  <!-- 红底详情板块 -->
+  <view class="hero-wrap">
+    <view class="hero-main">
+      <view class="hero-left">
+        <text class="hero-title">{{product.name}}</text>
+        <view class="hero-meta-grid">
+          <view class="hero-meta-item" wx:for="{{detailMeta}}" wx:key="label">
+            <text class="hero-meta-label">【{{item.label}}】</text>
+            <text class="hero-meta-value">{{item.value}}</text>
+          </view>
+        </view>
+        <text class="hero-desc">{{detailDescription}}</text>
+      </view>
+
+      <view class="hero-right">
+        <image class="pack-image" src="{{product.images[0]}}" mode="aspectFit"></image>
+        <view class="weight-chip">
+          <text>净含量 {{detailWeight}}</text>
+        </view>
+        <text class="jin-price">斤价：{{detailPerJinPrice}}元</text>
+      </view>
+    </view>
+
+    <view class="hero-gallery">
+      <view class="hero-gallery-item" wx:for="{{detailImages}}" wx:key="index">
+        <image class="hero-gallery-image" src="{{item}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 价格和购买信息 -->
+  <view class="product-info card">
+    <view class="price-section">
+      <view class="price-main">
+        <text class="price-symbol">¥</text>
+        <text class="price-integer">{{formatPrice(selectedSku ? selectedSku.price : product.price)}}</text>
+        <text class="price-unit">/件</text>
+      </view>
+      <view class="price-original">
+        <text class="original-price">¥{{formatPrice(product.originalPrice)}}</text>
+      </view>
+      <view class="price-tag">
+        <text class="tag">包邮</text>
+      </view>
+    </view>
+
+    <view class="sales-info">
+      <text>销量 {{product.sales}}</text>
+      <text>库存 {{selectedSku ? selectedSku.stock : product.stock}}</text>
+      <text>评分 {{product.rating || 5.0}}</text>
+    </view>
+
+    <view wx:if="{{stockStatus}}" class="stock-status-bar {{stockStatus.status}}">
+      <text wx:if="{{stockStatus.status === 'out_of_stock'}}" class="status-text">{{getStockStatusText(stockStatus.status)}} - 暂时无法购买</text>
+      <text wx:elif="{{stockStatus.status === 'low_stock'}}" class="status-text">{{getStockStatusText(stockStatus.status)}} - 仅剩{{stockStatus.stock}}件</text>
+    </view>
+
+    <view wx:if="{{product.skus && product.skus.length > 0}}" class="spec-selector" bind:tap="showSpecSelector">
+      <text class="spec-label">规格</text>
+      <text class="spec-value">{{selectedSku ? selectedSku.specValues.join(' ') : '请选择'}}</text>
+      <text class="spec-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 商品描述 -->
+  <view class="product-description card">
+    <view class="desc-title">商品详情</view>
+    <text class="desc-content">{{product.description}}</text>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bar-left">
+      <view class="bar-item" bind:tap="contactService">
+        <text class="bar-icon">🏪</text>
+        <text>店铺</text>
+      </view>
+      <view class="bar-item" bind:tap="contactService">
+        <text class="bar-icon">💬</text>
+        <text>客服</text>
+      </view>
+      <view class="bar-item" bind:tap="toggleFavorite">
+        <text class="bar-icon">{{isFavorite ? '❤️' : '🤍'}}</text>
+        <text>{{isFavorite ? '已收藏' : '收藏'}}</text>
+      </view>
+    </view>
+    <view class="bar-right">
+      <button class="btn-cart" bind:tap="addToCart" disabled="{{!stockStatus.inStock}}">加入购物车</button>
+      <button class="btn-buy" bind:tap="buyNow" disabled="{{!stockStatus.inStock}}">{{stockStatus.inStock ? '立即购买' : '已售罄'}}</button>
+    </view>
+  </view>
+
+  <!-- 规格选择弹窗 -->
+  <view wx:if="{{showSpecSelector}}" class="spec-modal">
+    <view class="modal-mask" bind:tap="hideSpecSelector"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>选择规格</text>
+        <text class="close-icon" bind:tap="hideSpecSelector">✕</text>
+      </view>
+      <view class="sku-list">
+        <view 
+          class="sku-item {{selectedSku && selectedSku.skuCode === item.skuCode ? 'active' : ''}} {{item.stock <= 0 ? 'disabled' : ''}}" 
+          wx:for="{{product.skus}}" 
+          wx:key="skuCode"
+          bind:tap="selectSku"
+          data-index="{{index}}"
+        >
+          <text>{{item.specValues.join(' ')}}</text>
+          <text class="sku-price">¥{{formatPrice(item.price)}}</text>
+          <text class="sku-stock {{item.stock <= 0 ? 'out-of-stock' : ''}}">
+            {{item.stock > 0 ? '库存' + item.stock : '已售罄'}}
+          </text>
+        </view>
+      </view>
+      <button class="confirm-btn" bind:tap="addToCart">确定</button>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{loading}}" class="loading">
+  <text>加载中...</text>
+</view>

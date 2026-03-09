@@ -1,0 +1,59 @@
+.trace-page {
+  min-height: 100vh;
+  padding: 24rpx;
+  background: #F7F4F0;
+}
+
+.trace-top {
+  padding: 18rpx 16rpx;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(67, 45, 20, 0.06);
+  margin-bottom: 20rpx;
+}
+
+.trace-top-left {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.trace-brand-logo {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 14rpx;
+  background: #F2EFEA;
+}
+
+.trace-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+}
+
+.trace-subtitle {
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: #7A6A53;
+}
+
+.trace-card {
+  padding: 22rpx 20rpx;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(67, 45, 20, 0.06);
+}
+
+.trace-card-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #3D2B1F;
+  margin-bottom: 10rpx;
+}
+
+.trace-card-text {
+  font-size: 26rpx;
+  color: #5C4A35;
+  line-height: 1.6;
+}
+

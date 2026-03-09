@@ -1,0 +1,69 @@
+/* 懒加载图片组件样式 */
+.lazy-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #F7F4F0;
+}
+
+.lazy-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lazy-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.lazy-image-error {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F7F4F0;
+}
+
+.error-icon {
+  width: 80rpx;
+  height: 80rpx;
+  opacity: 0.3;
+  margin-bottom: 10rpx;
+}
+
+.error-text {
+  font-size: 24rpx;
+  color: #999;
+}

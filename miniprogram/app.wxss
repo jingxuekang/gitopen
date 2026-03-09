@@ -1,0 +1,324 @@
+/**app.wxss**/
+page {
+  background-color: #F7F4F0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  /* 页面切换动画 */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 页面进入动画 */
+.page-enter {
+  animation: pageEnter 0.3s ease-out;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 页面退出动画 */
+.page-exit {
+  animation: pageExit 0.3s ease-in;
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+}
+
+/* 全局颜色变量 - 茶文化暖色调 */
+.primary-color {
+  color: #5B3A29;
+}
+
+.secondary-color {
+  color: #8B6914;
+}
+
+.accent-color {
+  color: #D4AF37;
+}
+
+.text-primary {
+  color: #3D2B1F;
+}
+
+.text-secondary {
+  color: #B8A898;
+}
+
+.bg-primary {
+  background-color: #5B3A29;
+}
+
+.bg-secondary {
+  background-color: #F7F4F0;
+}
+
+/* 通用容器 */
+.container {
+  padding: 30rpx;
+}
+
+/* 通用按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: #5B3A29;
+  border: 2rpx solid #5B3A29;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+/* 通用卡片 */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(91, 58, 41, 0.06);
+}
+
+/* 价格样式 */
+.price {
+  color: #B5702E;
+  font-weight: bold;
+}
+
+.price-symbol {
+  font-size: 24rpx;
+}
+
+.price-integer {
+  font-size: 40rpx;
+}
+
+.price-decimal {
+  font-size: 28rpx;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 8rpx 16rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+
+.tag-primary {
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+}
+
+.tag-secondary {
+  background-color: #F7F4F0;
+  color: #8C7B6B;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background-color: #E8E0D8;
+  margin: 30rpx 0;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 100rpx 0;
+}
+
+.empty-state image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-state text {
+  display: block;
+  color: #B8A898;
+  font-size: 28rpx;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+/* 下拉刷新优化 */
+.refresh-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.refresh-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 上拉加载更多 */
+.load-more {
+  text-align: center;
+  padding: 30rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.load-more-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.load-more-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+  animation: rotate 1s linear infinite;
+}
+
+/* 响应式设计 - 小屏幕适配 */
+@media (max-width: 320px) {
+  .container {
+    padding: 20rpx;
+  }
+  
+  .card {
+    padding: 20rpx;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    font-size: 28rpx;
+    padding: 20rpx;
+  }
+}
+
+/* 响应式设计 - 大屏幕适配 */
+@media (min-width: 768px) {
+  .container {
+    max-width: 750rpx;
+    margin: 0 auto;
+  }
+}
+
+/* 安全区域适配 */
+.safe-area-top {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 优化的Toast样式 */
+.custom-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 30rpx 40rpx;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  z-index: 9999;
+  animation: toastFadeIn 0.3s ease-out;
+}
+
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* 优化的确认对话框遮罩 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  animation: maskFadeIn 0.3s ease-out;
+}
+
+@keyframes maskFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 流畅的滚动 */
+scroll-view {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 点击反馈优化 */
+.tap-active {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+/* 图片加载优化 */
+image {
+  will-change: transform;
+}
+
+/* 性能优化 - 使用GPU加速 */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}

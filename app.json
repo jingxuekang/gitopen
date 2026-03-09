@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/user/user",
+    "pages/login/login",
+    "pages/search/search"
+  ],
+  "subPackages": [
+    {
+      "root": "packageProduct",
+      "name": "product",
+      "pages": [
+        "pages/product/product",
+        "pages/trace/source/source",
+        "pages/review/review",
+        "pages/review/list/list"
+      ]
+    },
+    {
+      "root": "packageOrder",
+      "name": "order",
+      "pages": [
+        "pages/order/confirm/confirm",
+        "pages/order/list/list",
+        "pages/order/detail/detail",
+        "pages/payment/payment"
+      ]
+    },
+    {
+      "root": "packageUser",
+      "name": "user",
+      "pages": [
+        "pages/user/settings/settings",
+        "pages/user/address/list/list",
+        "pages/user/address/edit/edit",
+        "pages/user/coupon/coupon",
+        "pages/user/favorite/favorite"
+      ]
+    },
+    {
+      "root": "packageOther",
+      "name": "other",
+      "pages": [
+        "pages/group/list/list",
+        "pages/group/detail/detail",
+        "pages/coupon/center/center",
+        "pages/coupon/select/select",
+        "pages/customer-service/customer-service"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["product"]
+    },
+    "pages/category/category": {
+      "network": "all",
+      "packages": ["product"]
+    },
+    "pages/cart/cart": {
+      "network": "all",
+      "packages": ["order"]
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#8B6914",
+    "navigationBarTitleText": "报告茶友",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F5F5"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于配送地址定位"
+    },
+    "scope.phoneNumber": {
+      "desc": "需要获取你的手机号用于快速登录和账户安全验证"
+    }
+  },
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ],
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

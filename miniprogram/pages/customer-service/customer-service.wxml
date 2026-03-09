@@ -1,0 +1,42 @@
+<!-- 客服页面 -->
+<view class="container">
+  <!-- 消息列表 -->
+  <scroll-view class="messages-container" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
+    <view class="message-item {{item.type === 'user' ? 'user-message' : 'service-message'}}" wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}">
+      <image class="avatar" src="{{item.type === 'user' ? userInfo.avatar : serviceAvatar}}" mode="aspectFill"></image>
+      <view class="message-content">
+        <view wx:if="{{item.contentType === 'text'}}" class="text-content">{{item.content}}</view>
+        <image wx:elif="{{item.contentType === 'image'}}" class="image-content" src="{{item.content}}" mode="widthFix" bindtap="onPreviewImage" data-url="{{item.content}}"></image>
+      </view>
+    </view>
+    
+    <!-- 常见问题（客服离线时显示） -->
+    <view wx:if="{{!isOnline && messages.length === 0}}" class="faq-section">
+      <text class="faq-title">常见问题</text>
+      <view class="faq-list">
+        <view class="faq-item" wx:for="{{faqs}}" wx:key="index" bindtap="onSelectFaq" data-index="{{index}}">
+          <text class="faq-question">{{item.question}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入框 -->
+  <view class="input-bar">
+    <input 
+      class="message-input" 
+      type="text" 
+      placeholder="{{isOnline ? '请输入消息...' : '客服离线，请留言'}}"
+      value="{{inputText}}"
+      bindinput="onInput"
+      confirm-type="send"
+      bindconfirm="onSendText"
+    />
+    <view class="actions">
+      <view class="action-btn" bindtap="onChooseImage">
+        <text class="icon">📷</text>
+      </view>
+      <button class="send-btn" bindtap="onSendText" disabled="{{!inputText.trim()}}">发送</button>
+    </view>
+  </view>
+</view>

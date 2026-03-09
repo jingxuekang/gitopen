@@ -1,0 +1,287 @@
+/* pages/cart/cart.wxss */
+
+.cart-container {
+  min-height: 100vh;
+  background-color: #F7F4F0;
+  padding-bottom: 120rpx;
+}
+
+/* 空购物车状态 */
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+}
+
+.empty-icon {
+  font-size: 200rpx;
+  margin-bottom: 40rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #B8A898;
+  margin-bottom: 60rpx;
+}
+
+.go-shopping-btn {
+  width: 400rpx;
+  height: 88rpx;
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  box-shadow: 0 8rpx 20rpx rgba(91, 58, 41, 0.3);
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.go-shopping-btn::after {
+  border: none;
+}
+
+.go-shopping-btn:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+/* 购物车内容 */
+.cart-content {
+  padding-bottom: 20rpx;
+}
+
+/* 商品列表 */
+.cart-list {
+  background-color: #FFFFFF;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #F0EBE5;
+  position: relative;
+}
+
+.cart-item.unavailable {
+  opacity: 0.6;
+}
+
+/* 选择框 */
+.item-checkbox {
+  padding: 10rpx;
+  margin-right: 20rpx;
+}
+
+/* 商品内容 */
+.item-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.item-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  background-color: #F7F4F0;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.item-name {
+  font-size: 28rpx;
+  color: #3D2B1F;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 8rpx;
+}
+
+.item-spec {
+  font-size: 24rpx;
+  color: #B8A898;
+  margin-bottom: 8rpx;
+}
+
+/* 库存不足标记 */
+.stock-warning {
+  margin-bottom: 8rpx;
+}
+
+.warning-text {
+  font-size: 22rpx;
+  color: #C0392B;
+  background-color: #FFF0F0;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+}
+
+.item-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-price {
+  font-size: 32rpx;
+  color: #B5702E;
+  font-weight: bold;
+}
+
+/* 数量控制器 */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1rpx solid #E8E0D8;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.quantity-btn {
+  width: 60rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FAF8F5;
+  font-size: 32rpx;
+  color: #5B3A29;
+}
+
+.quantity-btn.disabled {
+  color: #D4C5B5;
+}
+
+.quantity-input {
+  width: 80rpx;
+  height: 50rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-left: 1rpx solid #E8E0D8;
+  border-right: 1rpx solid #E8E0D8;
+}
+
+/* 删除按钮 */
+.item-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 120rpx;
+  background-color: #C0392B;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  transform: translateX(120rpx);
+  transition: transform 0.3s;
+}
+
+/* 底部操作栏 */
+.cart-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid #E8E0D8;
+  box-shadow: 0 -4rpx 20rpx rgba(91, 58, 41, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  z-index: 100;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+}
+
+/* 全选 */
+.select-all {
+  display: flex;
+  align-items: center;
+  margin-right: 40rpx;
+}
+
+.select-all-text {
+  font-size: 28rpx;
+  color: #3D2B1F;
+  margin-left: 10rpx;
+}
+
+/* 批量删除 */
+.batch-delete {
+  font-size: 28rpx;
+  color: #8C7B6B;
+  padding: 10rpx 20rpx;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 总价信息 */
+.total-info {
+  margin-right: 20rpx;
+}
+
+.total-label {
+  font-size: 24rpx;
+  color: #8C7B6B;
+}
+
+.total-price {
+  font-size: 36rpx;
+  color: #B5702E;
+  font-weight: bold;
+}
+
+/* 结算按钮 */
+.checkout-btn {
+  width: 200rpx;
+  height: 70rpx;
+  background: linear-gradient(135deg, #5B3A29 0%, #8B6914 100%);
+  color: #FFF8E7;
+  border-radius: 35rpx;
+  font-size: 28rpx;
+  box-shadow: 0 8rpx 20rpx rgba(91, 58, 41, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s;
+}
+
+.checkout-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 4rpx 12rpx rgba(91, 58, 41, 0.4);
+}
+
+.checkout-btn.disabled {
+  background: #D4C5B5;
+  box-shadow: none;
+}

@@ -1,0 +1,88 @@
+<!-- 评价页面 -->
+<view class="container">
+  <view wx:if="{{loadingOrder}}" class="loading-wrap">
+    <text>订单信息加载中...</text>
+  </view>
+
+  <block wx:else>
+    <view class="order-items-section">
+      <view class="section-title">选择评价商品</view>
+      <view class="order-items-list">
+        <view
+          class="order-item-card {{selectedItemIndex === index ? 'active' : ''}} {{item.reviewed ? 'reviewed' : ''}}"
+          wx:for="{{orderItems}}"
+          wx:key="itemKey"
+          data-index="{{index}}"
+          bindtap="onSelectItem"
+        >
+          <image class="order-item-image" src="{{item.productImage}}" mode="aspectFill"></image>
+          <view class="order-item-main">
+            <text class="order-item-name">{{item.productName}}</text>
+            <text class="order-item-spec">{{item.specText}}</text>
+            <view class="order-item-bottom">
+              <text class="order-item-price">¥{{item.priceText}} x{{item.quantity}}</text>
+              <text class="review-tag {{item.reviewed ? 'done' : 'wait'}}">{{item.reviewed ? '已评价' : '待评价'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="product-section">
+      <image class="product-image" src="{{productInfo.image}}" mode="aspectFill"></image>
+      <text class="product-name">{{productInfo.name}}</text>
+    </view>
+
+    <!-- 评分 -->
+    <view class="rating-section">
+      <text class="section-title">商品评分</text>
+      <view class="rating-stars">
+        <view class="star {{rating >= 1 ? 'active' : ''}}" bindtap="onRatingChange" data-value="1">★</view>
+        <view class="star {{rating >= 2 ? 'active' : ''}}" bindtap="onRatingChange" data-value="2">★</view>
+        <view class="star {{rating >= 3 ? 'active' : ''}}" bindtap="onRatingChange" data-value="3">★</view>
+        <view class="star {{rating >= 4 ? 'active' : ''}}" bindtap="onRatingChange" data-value="4">★</view>
+        <view class="star {{rating >= 5 ? 'active' : ''}}" bindtap="onRatingChange" data-value="5">★</view>
+      </view>
+      <text class="rating-text">
+        {{rating === 5 ? '非常满意' : rating === 4 ? '满意' : rating === 3 ? '一般' : rating === 2 ? '不满意' : '非常不满意'}}
+      </text>
+    </view>
+
+    <!-- 评价内容 -->
+    <view class="content-section">
+      <text class="section-title">评价内容</text>
+      <textarea
+        class="content-input"
+        placeholder="分享您的使用感受，帮助其他买家选择"
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="500"
+        auto-height
+      ></textarea>
+      <text class="char-count">{{content.length}}/500</text>
+    </view>
+
+    <!-- 上传图片 -->
+    <view class="images-section">
+      <text class="section-title">上传图片（选填）</text>
+      <view class="images-grid">
+        <view class="image-item" wx:for="{{images}}" wx:key="index">
+          <image class="image" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-index="{{index}}"></image>
+          <view class="delete-btn" bindtap="onDeleteImage" data-index="{{index}}">×</view>
+        </view>
+        <view wx:if="{{images.length < maxImages}}" class="add-image" bindtap="onChooseImage">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加图片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting || currentItemReviewed}}">
+        {{currentItemReviewed ? '当前商品已评价' : (submitting ? '提交中...' : '提交评价')}}
+      </button>
+    </view>
+  </block>
+</view>

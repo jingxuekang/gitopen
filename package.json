@@ -1,0 +1,32 @@
+{
+  "name": "tea-shop-miniprogram",
+  "version": "1.0.0",
+  "description": "茶叶电商微信小程序",
+  "scripts": {
+    "lint": "eslint \"app.js\" \"pages/**/*.js\" \"utils/**/*.js\" \"components/**/*.js\" \"cloudfunctions/**/*.js\"",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"**/*.{js,json,md,wxml,wxss}\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.1",
+    "jest": "^29.5.0",
+    "fast-check": "^3.15.0",
+    "prettier": "^3.5.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "collectCoverageFrom": [
+      "cloudfunctions/**/*.js",
+      "!cloudfunctions/**/node_modules/**"
+    ]
+  }
+}

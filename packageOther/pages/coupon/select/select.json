@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "选择优惠券",
+  "usingComponents": {
+    "skeleton": "/components/skeleton/skeleton",
+    "coupon-card": "/components/coupon-card/coupon-card",
+    "nav-header": "/components/nav-header/nav-header"
+  },
+  "navigationStyle": "custom"
+}
