@@ -1,7 +1,6 @@
 <!-- 订单列表页面 -->
 <view class="container">
   <nav-header title="我的订单" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- Tab 栏 -->
   <view class="tabs">
     <view 

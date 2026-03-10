@@ -1,7 +1,6 @@
 <!-- 客服页面 -->
 <view class="container">
   <nav-header title="在线客服" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <view class="status-bar">
     <view class="status-dot {{isOnline ? 'online' : 'offline'}}"></view>
     <view class="status-text-wrap">

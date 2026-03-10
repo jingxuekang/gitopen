@@ -1,6 +1,5 @@
 <view class="cart-container">
   <nav-header title="购物车" showBack="{{false}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- 空购物车状态 -->
   <view wx:if="{{!loading && items.length === 0}}" class="empty-cart">
     <view class="empty-illustration">

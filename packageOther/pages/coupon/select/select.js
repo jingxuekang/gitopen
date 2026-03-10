@@ -1,4 +1,4 @@
-const { couponApi } = require('../../../utils/api.js')
+const { couponApi } = require('../../../../utils/api.js')
 
 // 优惠券选择页面
 Page({

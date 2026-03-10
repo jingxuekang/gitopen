@@ -2,44 +2,49 @@
 .nav-header {
   background: linear-gradient(135deg, #8B6914 0%, #A67C1A 50%, #8B6914 100%);
   box-shadow: 0 4rpx 20rpx rgba(139, 105, 20, 0.25);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx 14rpx;
+  flex-shrink: 0;
 }
 
+/* 状态栏精确占位 */
+.nav-status-bar {
+  width: 100%;
+}
+
+/* 导航内容行 */
 .nav-content {
-  height: 88rpx;
+  height: 72rpx;
   display: flex;
   align-items: center;
-  padding: 0 24rpx;
   position: relative;
 }
 
 .nav-back {
-  width: 64rpx;
-  height: 64rpx;
+  width: 56rpx;
+  height: 56rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8rpx;
   flex-shrink: 0;
+  margin-right: 8rpx;
 }
 
 .back-arrow {
-  width: 20rpx;
-  height: 20rpx;
+  width: 18rpx;
+  height: 18rpx;
   border-left: 4rpx solid #FFF8E8;
   border-bottom: 4rpx solid #FFF8E8;
   transform: rotate(45deg);
   margin-left: 8rpx;
 }
 
-/* Logo + 标题居中组合 */
+/* Logo + 标题居中 */
 .nav-logo-wrap {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12rpx;
   position: absolute;
   left: 50%;
@@ -47,18 +52,18 @@
 }
 
 .nav-logo {
-  width: 44rpx;
-  height: 44rpx;
-  border-radius: 8rpx;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 10rpx;
+  background: rgba(255, 255, 255, 0.14);
 }
 
-/* 标题字体与首页"报告茶友"一致 */
+/* 与首页 brand-name 完全一致 */
 .nav-title {
   font-size: 36rpx;
   font-weight: 700;
   color: #FFF8E8;
   letter-spacing: 2rpx;
-  white-space: nowrap;
 }
 
 .nav-right {

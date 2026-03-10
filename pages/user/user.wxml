@@ -1,23 +1,30 @@
 <!-- pages/user/user.wxml -->
 <view class="user-page">
-  <nav-header title="个人中心" showBack="{{false}}"></nav-header>
-  <view class="nav-placeholder"></view>
-  <view class="profile-card">
-    <view class="profile-left" bindtap="onLoginTap">
-      <view wx:if="{{!(isLogin && userInfo.avatar)}}" class="avatar avatar-fallback">
-        <text class="avatar-text">{{avatarText}}</text>
-      </view>
-      <image wx:else class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
-      <view class="user-meta">
-        <text class="name" bindtap="onLoginTap">{{isLogin ? (userInfo.nickname || '微信用户') : '登录/注册'}}</text>
-      </view>
+  <!-- 沉浸式顶部区域 -->
+  <view class="user-header">
+    <view class="nav-status-bar" style="height: {{navBarHeight}}px;"></view>
+    <view class="header-nav-row">
+      <text class="header-nav-title">个人中心</text>
     </view>
-    <view class="profile-actions">
-      <view class="icon-btn" bindtap="goToMessages">
-        <view class="icon chat-icon"></view>
+    <!-- 用户信息 -->
+    <view class="profile-card" bindtap="onLoginTap">
+      <view class="profile-left">
+        <view wx:if="{{!(isLogin && userInfo.avatar)}}" class="avatar avatar-fallback">
+          <text class="avatar-text">{{avatarText}}</text>
+        </view>
+        <image wx:else class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+        <view class="user-meta">
+          <text class="name">{{isLogin ? (userInfo.nickname || '微信用户') : '点击登录'}}</text>
+          <text class="user-sub">{{isLogin ? '欢迎回来' : '登录后享受更多权益'}}</text>
+        </view>
       </view>
-      <view class="icon-btn" bindtap="onSettingsTap">
-        <view class="icon settings-icon"></view>
+      <view class="profile-actions">
+        <view class="icon-btn" catchtap="goToMessages">
+          <view class="icon chat-icon"></view>
+        </view>
+        <view class="icon-btn" catchtap="onSettingsTap">
+          <view class="icon settings-icon"></view>
+        </view>
       </view>
     </view>
   </view>

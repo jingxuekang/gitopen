@@ -11,7 +11,8 @@ Page({
   data: {
     items: [],           // 购物车商品列表
     totalPrice: 0,       // 总价（分）
-    selectedCount: 0,    // 选中商品数量
+    selectedCount: 0,    // 选中商品数量
+
     allSelected: false,  // 是否全选
     hasUnavailable: false // 是否有不可用商品被选中
   },
@@ -33,16 +34,30 @@ Page({
   normalizeCartItems(items = []) {
     return (Array.isArray(items) ? items : []).map((item) => this.normalizeCartItem(item))
   },
-
-  onLoad() {
-    this.loadCart()
-  },
-
-  onShow() {
-    // 每次显示页面时刷新购物车
-    this.loadCart()
-  },
-
+
+
+  onLoad() {
+
+    this.loadCart()
+
+  },
+
+
+
+  onShow() {
+    const _sysInfo = wx.getSystemInfoSync()
+    const _statusH = _sysInfo.statusBarHeight || 20
+    const _navContentH = Math.round(72 / 750 * _sysInfo.windowWidth)
+    this.setData({ navBarHeight: _statusH + _navContentH })
+
+    // 每次显示页面时刷新购物车
+
+    this.loadCart()
+
+  },
+
+
+
   /**
    * 加载购物车数据   */
   async loadCart() {
@@ -144,23 +159,40 @@ Page({
       util.hideLoading()
     }
   },
-
-  /**
-   * 减少商品数量
-   */
-  decreaseQuantity(e) {
-    const { id, quantity } = e.currentTarget.dataset
-    
-    if (quantity <= 1) {
-      return
-    }
-    
-    this.updateQuantity(id, quantity - 1)
-  },
-
-  /**
-   * 增加商品数量
-   */
+
+
+  /**
+
+   * 减少商品数量
+
+   */
+
+  decreaseQuantity(e) {
+
+    const { id, quantity } = e.currentTarget.dataset
+
+    
+
+    if (quantity <= 1) {
+
+      return
+
+    }
+
+    
+
+    this.updateQuantity(id, quantity - 1)
+
+  },
+
+
+
+  /**
+
+   * 增加商品数量
+
+   */
+
   increaseQuantity(e) {
     const { id, quantity, stock } = e.currentTarget.dataset
     
@@ -229,10 +261,14 @@ Page({
       util.showToast(err && err.message ? err.message : '操作失败，请重试')
     }
   },
-
-  /**
-   * 删除单个商品
-   */
+
+
+  /**
+
+   * 删除单个商品
+
+   */
+
   deleteItem(e) {
     const { id } = e.currentTarget.dataset
     
@@ -262,12 +298,18 @@ Page({
    */
   batchDelete() {
     const selectedItems = this.data.items.filter(item => item.selected)
-    
-    if (selectedItems.length === 0) {
-      util.showToast('请先选择要删除的商品')
-      return
-    }
-    
+    
+
+    if (selectedItems.length === 0) {
+
+      util.showToast('请先选择要删除的商品')
+
+      return
+
+    }
+
+    
+
     util.showConfirm(`确定删除选中的${selectedItems.length}件商品吗？`).then(() => {
       const cartItemIds = selectedItems.map(item => item._id)
       this.batchDeleteInternal(cartItemIds)
@@ -289,21 +331,34 @@ Page({
       util.hideLoading()
     }
   },
-
-  /**
+
+
+  /**
+
    * 去结算
-   */
+   */
+
   checkout() {
-    if (this.data.selectedCount === 0) {
-      util.showToast('请选择要结算的商品')
-      return
-    }
-    
-    if (this.data.hasUnavailable) {
-      util.showToast('选中的商品中有库存不足的商品')
-      return
-    }
-    
+    if (this.data.selectedCount === 0) {
+
+      util.showToast('请选择要结算的商品')
+
+      return
+
+    }
+
+    
+
+    if (this.data.hasUnavailable) {
+
+      util.showToast('选中的商品中有库存不足的商品')
+
+      return
+
+    }
+
+    
+
     const orderItems = this.data.items
       .filter((item) => item.selected && item.available)
       .map((item) => ({
@@ -326,13 +381,22 @@ Page({
       url: '/pages/order/confirm/confirm?sourceType=cart'
     })
   },
-
-  /**
+
+
+  /**
+
    * 计算价格
-   */
-  goShopping() {
-    wx.reLaunch({
-      url: '/pages/index/index'
-    })
-  }
-})
+   */
+
+  goShopping() {
+
+    wx.reLaunch({
+
+      url: '/pages/index/index'
+
+    })
+
+  }
+
+})
+

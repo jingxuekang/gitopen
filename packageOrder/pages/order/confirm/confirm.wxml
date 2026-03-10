@@ -1,7 +1,6 @@
 <!-- 订单确认页面 -->
 <view class="container">
   <nav-header title="确认订单" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- 加载状态 -->
   <view wx:if="{{loading}}" class="loading">
     <text>加载中...</text>

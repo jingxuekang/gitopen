@@ -1,6 +1,6 @@
 // 订单确认页面
 const app = getApp()
-const { calculateMemberPrice, normalizeSpecText } = require('../../../utils/util.js')
+const { calculateMemberPrice, normalizeSpecText } = require('../../../../utils/util.js')
 
 Page({
   data: {

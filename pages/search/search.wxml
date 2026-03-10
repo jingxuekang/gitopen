@@ -1,7 +1,6 @@
 <!--pages/search/search.wxml-->
 <view class="search-page">
   <nav-header title="搜索商品" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- 搜索栏 -->
   <view class="search-bar">
     <view class="search-input-wrapper">

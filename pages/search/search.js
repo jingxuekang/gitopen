@@ -13,6 +13,10 @@ Page({
   },
 
   onLoad() {
+    const _sysInfo = wx.getSystemInfoSync()
+    const _statusH = _sysInfo.statusBarHeight || 20
+    const _navContentH = Math.round(72 / 750 * _sysInfo.windowWidth)
+    this.setData({ navBarHeight: _statusH + _navContentH })
     this.loadSearchHistory()
   },
 

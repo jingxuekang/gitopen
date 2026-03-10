@@ -1,7 +1,6 @@
 <!-- pages/user/settings/settings.wxml -->
 <view class="settings-page">
   <nav-header title="设置" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <view class="group">
     <view
       class="item"

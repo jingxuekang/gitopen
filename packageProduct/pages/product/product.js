@@ -1,5 +1,5 @@
 // pages/product/product.js
-const { productApi, cartApi, favoriteApi } = require('/utils/api.js')
+const { productApi, cartApi, favoriteApi } = require('../../../utils/api.js')
 const {
   formatPrice,
   calculateMemberPrice,
@@ -8,7 +8,7 @@ const {
   getStockStatusText,
   getStorage,
   normalizeSpecText
-} = require('/utils/util.js')
+} = require('../../../utils/util.js')
 
 const CATEGORY_IMAGE_MAP = {
   tea: '/images/category/tea.png',
@@ -55,6 +55,8 @@ Page({
     loading: true,
     memberLevel: 0,
     showSpecInfo: false,
+    statusBarHeight: 20,
+    navBarHeight: 88,
     stockStatus: {
       inStock: false,
       stock: 0,
@@ -99,6 +101,19 @@ Page({
       this.setData({ loading: false })
       return
     }
+
+    // 计算状态栏和胶囊按钮高度，避免遮挡
+    const sysInfo = wx.getSystemInfoSync()
+    const statusBarHeight = sysInfo.statusBarHeight || 20
+    let menuButtonTop = statusBarHeight
+    let menuButtonHeight = 32
+    try {
+      const menuButton = wx.getMenuButtonBoundingClientRect()
+      menuButtonTop = menuButton.top
+      menuButtonHeight = menuButton.height
+    } catch (e) {}
+    const navBarHeight = statusBarHeight + menuButtonHeight + (menuButtonTop - statusBarHeight) * 2
+    this.setData({ statusBarHeight, navBarHeight })
 
     this.setData({ productId: options.id })
     this.loadTeaCategoryAssets()

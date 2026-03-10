@@ -2,30 +2,33 @@
 <view class="product-page" wx:if="{{!loading}}">
   <!-- 顶部导航 -->
   <view class="top-nav">
-    <view class="nav-left">
-      <view class="nav-btn nav-btn-back" bindtap="navigateBack">
-        <view class="nav-icon-back"></view>
-      </view>
-    </view>
-    <view class="nav-center">
+    <view class="nav-status-bar" style="height: {{statusBarHeight}}px;"></view>
+    <!-- 第一行：Logo + 商品详情 -->
+    <view class="nav-brand-row">
       <image class="nav-logo" src="/images/brand-logo.png" mode="aspectFit"></image>
       <text class="nav-title">商品详情</text>
     </view>
-    <view class="nav-right">
-      <view class="nav-btn nav-btn-share" bindtap="openShareSheet">
-        <view class="nav-icon-share">
-          <view class="share-tray"></view>
-          <view class="share-arrow"></view>
-          <view class="share-arrow-head"></view>
-        </view>
+    <!-- 第二行：返回（左）+ 分享/购物车（右）-->
+    <view class="nav-action-row">
+      <view class="nav-btn nav-btn-back" bindtap="navigateBack">
+        <view class="nav-icon-back"></view>
       </view>
-      <view class="nav-btn nav-btn-cart" bindtap="goToCartPage">
-        <view class="nav-icon-cart">
-          <view class="cart-bag"></view>
-          <view class="cart-handle"></view>
-          <view class="cart-dot"></view>
+      <view class="nav-action-right">
+        <view class="nav-btn nav-btn-share" bindtap="openShareSheet">
+          <view class="nav-icon-share">
+            <view class="share-tray"></view>
+            <view class="share-arrow"></view>
+            <view class="share-arrow-head"></view>
+          </view>
         </view>
-        <text wx:if="{{cartCount > 0}}" class="nav-badge">{{cartCount}}</text>
+        <view class="nav-btn nav-btn-cart" bindtap="goToCartPage">
+          <view class="nav-icon-cart">
+            <view class="cart-bag"></view>
+            <view class="cart-handle"></view>
+            <view class="cart-dot"></view>
+          </view>
+          <text wx:if="{{cartCount > 0}}" class="nav-badge">{{cartCount}}</text>
+        </view>
       </view>
     </view>
   </view>

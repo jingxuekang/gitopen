@@ -1,5 +1,5 @@
-const { favoriteApi, cartApi, productApi } = require('../../../utils/api.js')
-const { formatPrice } = require('../../../utils/util.js')
+const { favoriteApi, cartApi, productApi } = require('../../../../utils/api.js')
+const { formatPrice } = require('../../../../utils/util.js')
 
 const DEFAULT_PRODUCT_IMAGE = '/images/empty/product.png'
 

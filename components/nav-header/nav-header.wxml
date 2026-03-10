@@ -1,5 +1,8 @@
 <!--components/nav-header/nav-header.wxml-->
-<view class="nav-header" style="padding-top: {{statusBarHeight}}px;">
+<view class="nav-header">
+  <!-- 状态栏精确占位（JS动态高度）-->
+  <view class="nav-status-bar" style="height: {{statusBarHeight}}px;"></view>
+  <!-- 导航内容行 -->
   <view class="nav-content">
     <view class="nav-back tap-active" wx:if="{{showBack}}" bindtap="onBack">
       <view class="back-arrow"></view>

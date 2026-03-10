@@ -1,5 +1,5 @@
 // pages/group/detail/detail.js
-const { formatPrice } = require('../../../utils/util.js')
+const { formatPrice } = require('../../../../utils/util.js')
 
 Page({
   data: {

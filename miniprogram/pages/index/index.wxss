@@ -228,7 +228,8 @@
 .ranking-item {
   display: flex;
   align-items: center;
-  padding: 24rpx;
+  padding: 18rpx 20rpx;
+  column-gap: 16rpx;
   border-bottom: 1rpx solid #F0EBE5;
 }
 
@@ -245,22 +246,31 @@
   font-size: 32rpx;
   font-weight: bold;
   color: #B8A898;
-  margin-right: 20rpx;
+  margin-right: 0;
+  flex-shrink: 0;
 }
 
 .rank-number.top-three {
   font-size: 40rpx;
 }
 
+.ranking-image-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 0;
+}
+
 .ranking-image {
-  width: 120rpx;
-  height: 120rpx;
+  width: 112rpx;
+  height: 112rpx;
   border-radius: 12rpx;
-  margin-right: 20rpx;
+  margin-right: 0;
 }
 
 .ranking-info {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -269,7 +279,7 @@
 .ranking-name {
   font-size: 28rpx;
   color: #3D2B1F;
-  margin-bottom: 12rpx;
+  margin-bottom: 10rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -287,6 +297,7 @@
   display: flex;
   align-items: baseline;
   color: #B5702E;
+  gap: 0;
 }
 
 .ranking-price .price-symbol {
@@ -295,7 +306,7 @@
 }
 
 .ranking-price .price-value {
-  font-size: 30rpx;
+  font-size: 32rpx;
   font-weight: bold;
 }
 
@@ -303,7 +314,7 @@
   font-size: 24rpx;
   color: #8C7B6B;
   background-color: #F7F4F0;
-  padding: 6rpx 16rpx;
+  padding: 8rpx 18rpx;
   border-radius: 20rpx;
 }
 

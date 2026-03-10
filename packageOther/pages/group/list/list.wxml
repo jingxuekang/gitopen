@@ -1,7 +1,6 @@
 <!--pages/group/list/list.wxml-->
 <view class="group-list-page">
   <nav-header title="拼团活动" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- 页面标题 -->
   <view class="page-header">
     <text class="page-title">拼团活动</text>

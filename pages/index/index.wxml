@@ -108,13 +108,15 @@
           </view>
           <!-- 第四名及以后显示普通数字 -->
           <view wx:else class="rank-number-normal">{{index + 1}}</view>
-          <lazy-image 
-            src="{{item.images[0]}}" 
-            mode="aspectFill"
-            width="120rpx"
-            height="120rpx"
-            imageClass="ranking-image"
-          ></lazy-image>
+          <view class="ranking-image-wrap">
+            <lazy-image 
+              src="{{item.images[0]}}" 
+              mode="aspectFill"
+              width="120rpx"
+              height="120rpx"
+              imageClass="ranking-image"
+            ></lazy-image>
+          </view>
           <view class="ranking-info">
             <text class="ranking-name">{{item.name}}</text>
             <view class="ranking-bottom">

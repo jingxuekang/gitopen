@@ -1,7 +1,6 @@
 <!-- 地址编辑页面 -->
 <view class="container">
   <nav-header title="编辑地址" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <view class="form">
     <!-- 收货人 -->
     <view class="form-item">

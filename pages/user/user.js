@@ -5,6 +5,7 @@ Page({
     userInfo: {},
     defaultAvatar: '',
     avatarText: '登',
+    navBarHeight: 88,
     orderStats: {
       unpaid: 0,
       unshipped: 0,
@@ -14,6 +15,9 @@ Page({
   },
 
   onShow() {
+    const _sysInfo = wx.getSystemInfoSync()
+    const _statusH = _sysInfo.statusBarHeight || 20
+    this.setData({ navBarHeight: _statusH })
     this.loadUserInfo()
     this.loadOrderStats()
   },

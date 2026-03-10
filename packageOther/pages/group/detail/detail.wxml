@@ -1,7 +1,6 @@
 <!--pages/group/detail/detail.wxml-->
 <view class="group-detail-page">
   <nav-header title="拼团详情" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- 加载状态 -->
   <view wx:if="{{loading}}" class="loading-container">
     <text class="loading-text">加载中...</text>

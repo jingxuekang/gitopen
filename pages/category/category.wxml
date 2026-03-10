@@ -1,7 +1,7 @@
 <!--pages/category/category.wxml-->
 <view class="category-page">
   <nav-header title="商品分类" showBack="{{false}}"></nav-header>
-  <view class="nav-placeholder"></view>
+  <view class="category-body">
   <!-- 分类列表 -->
   <view class="category-sidebar">
     <view 
@@ -159,6 +159,7 @@
       </view>
     </scroll-view>
   </view>
+  </view><!-- end category-body -->
   
   <!-- 底部导航栏 -->
   <custom-tabbar current="1" />

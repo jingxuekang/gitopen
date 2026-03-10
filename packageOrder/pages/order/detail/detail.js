@@ -1,5 +1,5 @@
 // 订单详情页面
-const { formatBeijingTime, normalizeSpecText } = require('../../../utils/util.js')
+const { formatBeijingTime, normalizeSpecText } = require('../../../../utils/util.js')
 
 Page({
   data: {

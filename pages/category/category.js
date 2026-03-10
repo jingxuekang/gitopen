@@ -11,6 +11,15 @@ Page({
     pageSize: 20,
     hasMore: true,
     error: false,
+    categories: [
+      { id: 'tea', name: '茶叶' },
+      { id: 'chenpi', name: '陈皮' },
+      { id: 'teapot', name: '紫砂' }
+    ],
+    teaFirstLevel: [
+      { id: 'baicha', name: '福鼎白茶' }
+    ],
+    currentFirstLevel: 'all',
     
     // 茶叶筛选
     teaFilters: {
@@ -72,6 +81,11 @@ Page({
   onLoad(options) {
     const category = options.category || 'tea'
     this.setData({ currentCategory: category })
+    // 计算导航栏高度（状态栏 + 导航内容区 88rpx换算px）
+    const info = wx.getSystemInfoSync()
+    const statusBarHeight = info.statusBarHeight || 20
+    const navContentHeight = Math.round(72 / 750 * info.windowWidth)
+    this.setData({ navBarHeight: statusBarHeight + navContentHeight })
     this.loadProducts()
   },
 

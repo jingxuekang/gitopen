@@ -1,5 +1,5 @@
 // 支付页面
-const { normalizeSpecText } = require('/utils/util.js')
+const { normalizeSpecText } = require('../../../utils/util.js')
 
 Page({
   data: {

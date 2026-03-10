@@ -1,7 +1,6 @@
 <!-- 我的优惠券页面 -->
 <view class="container">
   <nav-header title="我的优惠券" showBack="{{true}}"></nav-header>
-  <view class="nav-placeholder"></view>
   <!-- Tab栏 -->
   <view class="tabs">
     <view 
