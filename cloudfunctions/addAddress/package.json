@@ -1,5 +1,5 @@
 {
-  "name": "addAddress",
+  "name": "add-address",
   "version": "1.0.0",
   "description": "添加收货地址",
   "main": "index.js",
